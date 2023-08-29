@@ -1,0 +1,14 @@
+com.lxn.flutter_note_app-jetified-window-1.0.0-beta04-0 /Users/namlx/.gradle/caches/transforms-3/25cee5f028ac2a6b79fd6278ff5b59e2/transformed/jetified-window-1.0.0-beta04/res
+com.lxn.flutter_note_app-jetified-annotation-experimental-1.1.0-1 /Users/namlx/.gradle/caches/transforms-3/6c0c163cc77ae6c91f9f7dfcd179c29c/transformed/jetified-annotation-experimental-1.1.0/res
+com.lxn.flutter_note_app-core-1.6.0-2 /Users/namlx/.gradle/caches/transforms-3/7e9df2ac2213a6bd3cef0f2f27870d79/transformed/core-1.6.0/res
+com.lxn.flutter_note_app-jetified-window-java-1.0.0-beta04-3 /Users/namlx/.gradle/caches/transforms-3/ae81e06d24c799147c26814497a2a305/transformed/jetified-window-java-1.0.0-beta04/res
+com.lxn.flutter_note_app-debug-4 /Users/namlx/flutter_note_app/android/app/src/debug/res
+com.lxn.flutter_note_app-main-5 /Users/namlx/flutter_note_app/android/app/src/main/res
+com.lxn.flutter_note_app-pngs-6 /Users/namlx/flutter_note_app/build/app/generated/res/pngs/debug
+com.lxn.flutter_note_app-resValues-7 /Users/namlx/flutter_note_app/build/app/generated/res/resValues/debug
+com.lxn.flutter_note_app-rs-8 /Users/namlx/flutter_note_app/build/app/generated/res/rs/debug
+com.lxn.flutter_note_app-mergeDebugResources-9 /Users/namlx/flutter_note_app/build/app/intermediates/incremental/debug/mergeDebugResources/merged.dir
+com.lxn.flutter_note_app-mergeDebugResources-10 /Users/namlx/flutter_note_app/build/app/intermediates/incremental/debug/mergeDebugResources/stripped.dir
+com.lxn.flutter_note_app-merged_res-11 /Users/namlx/flutter_note_app/build/app/intermediates/merged_res/debug
+com.lxn.flutter_note_app-packaged_res-12 /Users/namlx/flutter_note_app/build/path_provider_android/intermediates/packaged_res/debug
+com.lxn.flutter_note_app-packaged_res-13 /Users/namlx/flutter_note_app/build/sqlite3_flutter_libs/intermediates/packaged_res/debug

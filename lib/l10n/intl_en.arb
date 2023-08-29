@@ -1,0 +1,15 @@
+{
+  "save" : "Save",
+  "back" : "Back",
+  "create_note_text_title_here" : "Title here",
+  "create_note_description_here" : "Write yours notes here",
+  "change_background" : "Change Background",
+  "extras" : "extras",
+  "pinned_notes": "Pinned Notes",
+  "view_all" : "View all",
+  "interesting_ideal": "Interesting Idea",
+  "starting_text" : "Every big step start with small step.\nNotes your first idea and start\nyour journey!",
+  "start_journey": "Start Your Journey",
+  "ops_problem": "Ops Sorry the problem",
+  "close" : "Close"
+}
