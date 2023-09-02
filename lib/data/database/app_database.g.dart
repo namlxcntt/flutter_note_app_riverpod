@@ -34,11 +34,11 @@ class $NoteEntityTable extends NoteEntity
   late final GeneratedColumn<String> label = GeneratedColumn<String>(
       'label', aliasedName, false,
       type: DriftSqlType.string, requiredDuringInsert: true);
-  static const VerificationMeta _timeCreatedMeta =
-      const VerificationMeta('timeCreated');
+  static const VerificationMeta _timeEditedMeta =
+      const VerificationMeta('timeEdited');
   @override
-  late final GeneratedColumn<DateTime> timeCreated = GeneratedColumn<DateTime>(
-      'createdTime', aliasedName, false,
+  late final GeneratedColumn<DateTime> timeEdited = GeneratedColumn<DateTime>(
+      'timeEdited', aliasedName, false,
       type: DriftSqlType.dateTime, requiredDuringInsert: true);
   static const VerificationMeta _isDoneTaskMeta =
       const VerificationMeta('isDoneTask');
@@ -65,7 +65,7 @@ class $NoteEntityTable extends NoteEntity
       type: DriftSqlType.bigInt, requiredDuringInsert: true);
   @override
   List<GeneratedColumn> get $columns =>
-      [id, title, description, label, timeCreated, isDoneTask, isPinned, color];
+      [id, title, description, label, timeEdited, isDoneTask, isPinned, color];
   @override
   String get aliasedName => _alias ?? 'note_entity';
   @override
@@ -98,13 +98,13 @@ class $NoteEntityTable extends NoteEntity
     } else if (isInserting) {
       context.missing(_labelMeta);
     }
-    if (data.containsKey('createdTime')) {
+    if (data.containsKey('timeEdited')) {
       context.handle(
-          _timeCreatedMeta,
-          timeCreated.isAcceptableOrUnknown(
-              data['createdTime']!, _timeCreatedMeta));
+          _timeEditedMeta,
+          timeEdited.isAcceptableOrUnknown(
+              data['timeEdited']!, _timeEditedMeta));
     } else if (isInserting) {
-      context.missing(_timeCreatedMeta);
+      context.missing(_timeEditedMeta);
     }
     if (data.containsKey('isDoneTask')) {
       context.handle(
@@ -143,8 +143,8 @@ class $NoteEntityTable extends NoteEntity
           .read(DriftSqlType.string, data['${effectivePrefix}description'])!,
       label: attachedDatabase.typeMapping
           .read(DriftSqlType.string, data['${effectivePrefix}label'])!,
-      timeCreated: attachedDatabase.typeMapping
-          .read(DriftSqlType.dateTime, data['${effectivePrefix}createdTime'])!,
+      timeEdited: attachedDatabase.typeMapping
+          .read(DriftSqlType.dateTime, data['${effectivePrefix}timeEdited'])!,
       isDoneTask: attachedDatabase.typeMapping
           .read(DriftSqlType.bool, data['${effectivePrefix}isDoneTask'])!,
       isPinned: attachedDatabase.typeMapping
@@ -165,7 +165,7 @@ class NoteEntityData extends DataClass implements Insertable<NoteEntityData> {
   final String title;
   final String description;
   final String label;
-  final DateTime timeCreated;
+  final DateTime timeEdited;
   final bool isDoneTask;
   final bool isPinned;
   final BigInt color;
@@ -174,7 +174,7 @@ class NoteEntityData extends DataClass implements Insertable<NoteEntityData> {
       required this.title,
       required this.description,
       required this.label,
-      required this.timeCreated,
+      required this.timeEdited,
       required this.isDoneTask,
       required this.isPinned,
       required this.color});
@@ -185,7 +185,7 @@ class NoteEntityData extends DataClass implements Insertable<NoteEntityData> {
     map['title'] = Variable<String>(title);
     map['description'] = Variable<String>(description);
     map['label'] = Variable<String>(label);
-    map['createdTime'] = Variable<DateTime>(timeCreated);
+    map['timeEdited'] = Variable<DateTime>(timeEdited);
     map['isDoneTask'] = Variable<bool>(isDoneTask);
     map['isPinned'] = Variable<bool>(isPinned);
     map['color'] = Variable<BigInt>(color);
@@ -198,7 +198,7 @@ class NoteEntityData extends DataClass implements Insertable<NoteEntityData> {
       title: Value(title),
       description: Value(description),
       label: Value(label),
-      timeCreated: Value(timeCreated),
+      timeEdited: Value(timeEdited),
       isDoneTask: Value(isDoneTask),
       isPinned: Value(isPinned),
       color: Value(color),
@@ -213,7 +213,7 @@ class NoteEntityData extends DataClass implements Insertable<NoteEntityData> {
       title: serializer.fromJson<String>(json['title']),
       description: serializer.fromJson<String>(json['description']),
       label: serializer.fromJson<String>(json['label']),
-      timeCreated: serializer.fromJson<DateTime>(json['timeCreated']),
+      timeEdited: serializer.fromJson<DateTime>(json['timeEdited']),
       isDoneTask: serializer.fromJson<bool>(json['isDoneTask']),
       isPinned: serializer.fromJson<bool>(json['isPinned']),
       color: serializer.fromJson<BigInt>(json['color']),
@@ -227,7 +227,7 @@ class NoteEntityData extends DataClass implements Insertable<NoteEntityData> {
       'title': serializer.toJson<String>(title),
       'description': serializer.toJson<String>(description),
       'label': serializer.toJson<String>(label),
-      'timeCreated': serializer.toJson<DateTime>(timeCreated),
+      'timeEdited': serializer.toJson<DateTime>(timeEdited),
       'isDoneTask': serializer.toJson<bool>(isDoneTask),
       'isPinned': serializer.toJson<bool>(isPinned),
       'color': serializer.toJson<BigInt>(color),
@@ -239,7 +239,7 @@ class NoteEntityData extends DataClass implements Insertable<NoteEntityData> {
           String? title,
           String? description,
           String? label,
-          DateTime? timeCreated,
+          DateTime? timeEdited,
           bool? isDoneTask,
           bool? isPinned,
           BigInt? color}) =>
@@ -248,7 +248,7 @@ class NoteEntityData extends DataClass implements Insertable<NoteEntityData> {
         title: title ?? this.title,
         description: description ?? this.description,
         label: label ?? this.label,
-        timeCreated: timeCreated ?? this.timeCreated,
+        timeEdited: timeEdited ?? this.timeEdited,
         isDoneTask: isDoneTask ?? this.isDoneTask,
         isPinned: isPinned ?? this.isPinned,
         color: color ?? this.color,
@@ -260,7 +260,7 @@ class NoteEntityData extends DataClass implements Insertable<NoteEntityData> {
           ..write('title: $title, ')
           ..write('description: $description, ')
           ..write('label: $label, ')
-          ..write('timeCreated: $timeCreated, ')
+          ..write('timeEdited: $timeEdited, ')
           ..write('isDoneTask: $isDoneTask, ')
           ..write('isPinned: $isPinned, ')
           ..write('color: $color')
@@ -270,7 +270,7 @@ class NoteEntityData extends DataClass implements Insertable<NoteEntityData> {
 
   @override
   int get hashCode => Object.hash(
-      id, title, description, label, timeCreated, isDoneTask, isPinned, color);
+      id, title, description, label, timeEdited, isDoneTask, isPinned, color);
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
@@ -279,7 +279,7 @@ class NoteEntityData extends DataClass implements Insertable<NoteEntityData> {
           other.title == this.title &&
           other.description == this.description &&
           other.label == this.label &&
-          other.timeCreated == this.timeCreated &&
+          other.timeEdited == this.timeEdited &&
           other.isDoneTask == this.isDoneTask &&
           other.isPinned == this.isPinned &&
           other.color == this.color);
@@ -290,7 +290,7 @@ class NoteEntityCompanion extends UpdateCompanion<NoteEntityData> {
   final Value<String> title;
   final Value<String> description;
   final Value<String> label;
-  final Value<DateTime> timeCreated;
+  final Value<DateTime> timeEdited;
   final Value<bool> isDoneTask;
   final Value<bool> isPinned;
   final Value<BigInt> color;
@@ -299,7 +299,7 @@ class NoteEntityCompanion extends UpdateCompanion<NoteEntityData> {
     this.title = const Value.absent(),
     this.description = const Value.absent(),
     this.label = const Value.absent(),
-    this.timeCreated = const Value.absent(),
+    this.timeEdited = const Value.absent(),
     this.isDoneTask = const Value.absent(),
     this.isPinned = const Value.absent(),
     this.color = const Value.absent(),
@@ -309,14 +309,14 @@ class NoteEntityCompanion extends UpdateCompanion<NoteEntityData> {
     required String title,
     required String description,
     required String label,
-    required DateTime timeCreated,
+    required DateTime timeEdited,
     required bool isDoneTask,
     required bool isPinned,
     required BigInt color,
   })  : title = Value(title),
         description = Value(description),
         label = Value(label),
-        timeCreated = Value(timeCreated),
+        timeEdited = Value(timeEdited),
         isDoneTask = Value(isDoneTask),
         isPinned = Value(isPinned),
         color = Value(color);
@@ -325,7 +325,7 @@ class NoteEntityCompanion extends UpdateCompanion<NoteEntityData> {
     Expression<String>? title,
     Expression<String>? description,
     Expression<String>? label,
-    Expression<DateTime>? timeCreated,
+    Expression<DateTime>? timeEdited,
     Expression<bool>? isDoneTask,
     Expression<bool>? isPinned,
     Expression<BigInt>? color,
@@ -335,7 +335,7 @@ class NoteEntityCompanion extends UpdateCompanion<NoteEntityData> {
       if (title != null) 'title': title,
       if (description != null) 'description': description,
       if (label != null) 'label': label,
-      if (timeCreated != null) 'createdTime': timeCreated,
+      if (timeEdited != null) 'timeEdited': timeEdited,
       if (isDoneTask != null) 'isDoneTask': isDoneTask,
       if (isPinned != null) 'isPinned': isPinned,
       if (color != null) 'color': color,
@@ -347,7 +347,7 @@ class NoteEntityCompanion extends UpdateCompanion<NoteEntityData> {
       Value<String>? title,
       Value<String>? description,
       Value<String>? label,
-      Value<DateTime>? timeCreated,
+      Value<DateTime>? timeEdited,
       Value<bool>? isDoneTask,
       Value<bool>? isPinned,
       Value<BigInt>? color}) {
@@ -356,7 +356,7 @@ class NoteEntityCompanion extends UpdateCompanion<NoteEntityData> {
       title: title ?? this.title,
       description: description ?? this.description,
       label: label ?? this.label,
-      timeCreated: timeCreated ?? this.timeCreated,
+      timeEdited: timeEdited ?? this.timeEdited,
       isDoneTask: isDoneTask ?? this.isDoneTask,
       isPinned: isPinned ?? this.isPinned,
       color: color ?? this.color,
@@ -378,8 +378,8 @@ class NoteEntityCompanion extends UpdateCompanion<NoteEntityData> {
     if (label.present) {
       map['label'] = Variable<String>(label.value);
     }
-    if (timeCreated.present) {
-      map['createdTime'] = Variable<DateTime>(timeCreated.value);
+    if (timeEdited.present) {
+      map['timeEdited'] = Variable<DateTime>(timeEdited.value);
     }
     if (isDoneTask.present) {
       map['isDoneTask'] = Variable<bool>(isDoneTask.value);
@@ -400,7 +400,7 @@ class NoteEntityCompanion extends UpdateCompanion<NoteEntityData> {
           ..write('title: $title, ')
           ..write('description: $description, ')
           ..write('label: $label, ')
-          ..write('timeCreated: $timeCreated, ')
+          ..write('timeEdited: $timeEdited, ')
           ..write('isDoneTask: $isDoneTask, ')
           ..write('isPinned: $isPinned, ')
           ..write('color: $color')

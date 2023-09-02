@@ -179,6 +179,36 @@ class S {
       args: [],
     );
   }
+
+  /// `Note found pinned notes`
+  String get note_found_pinned {
+    return Intl.message(
+      'Note found pinned notes',
+      name: 'note_found_pinned',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No interesting ideal notes`
+  String get note_found_interesting {
+    return Intl.message(
+      'No interesting ideal notes',
+      name: 'note_found_interesting',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Last edited on`
+  String get last_edited {
+    return Intl.message(
+      'Last edited on',
+      name: 'last_edited',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

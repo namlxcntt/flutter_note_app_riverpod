@@ -25,7 +25,7 @@ class NoteRepositoryImpl extends NoteRepository {
               title: noteModel.title,
               description: noteModel.description,
               label: noteModel.label,
-              timeCreated: noteModel.createdTime,
+              timeEdited: noteModel.timeEdited,
               isDoneTask: noteModel.isDoneTask,
               color: noteModel.color,
               isPinned: noteModel.isPinned),

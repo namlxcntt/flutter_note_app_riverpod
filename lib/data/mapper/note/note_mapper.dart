@@ -15,7 +15,7 @@ class NoteMapper extends Mapper<NoteEntityData, NoteModel> {
         id: entity.id,
         title: entity.title,
         description: entity.description,
-        createdTime: entity.timeCreated,
+        timeEdited: entity.timeEdited,
         isDoneTask: entity.isDoneTask,
         label: entity.label,
         color: entity.color,

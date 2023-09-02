@@ -10,7 +10,7 @@ class NoteModel with _$NoteModel {
     required int? id,
     required String title,
     required String description,
-    required DateTime createdTime,
+    required DateTime timeEdited,
     required bool isDoneTask,
     required String label,
     required BigInt color,

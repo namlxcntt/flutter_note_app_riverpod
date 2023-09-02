@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_note_app/data/model/note/note_model.dart';
 import 'package:flutter_note_app/features/complete/complete_page.dart';
 import 'package:flutter_note_app/features/create/create_page.dart';
 import 'package:flutter_note_app/features/detail/detail_page.dart';
 import 'package:flutter_note_app/features/main/main_page.dart';
+import 'package:flutter_note_app/utils/logger.dart';
 import 'package:go_router/go_router.dart';
 
 enum RouteDefine {
@@ -39,7 +41,11 @@ class NyAppRouter {
               name: RouteDefine.detail.name,
               path: RouteDefine.detail.getSubPath,
               pageBuilder: (context, state) {
-                return const MaterialPage(child: DetailPage());
+                var data = state.extra as NoteModel;
+                return MaterialPage(
+                    child: DetailNotePage(
+                  noteModel: data,
+                ));
               },
             ),
             GoRoute(

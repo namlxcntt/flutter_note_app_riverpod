@@ -23,7 +23,7 @@ mixin _$NoteModel {
   int? get id => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
-  DateTime get createdTime => throw _privateConstructorUsedError;
+  DateTime get timeEdited => throw _privateConstructorUsedError;
   bool get isDoneTask => throw _privateConstructorUsedError;
   String get label => throw _privateConstructorUsedError;
   BigInt get color => throw _privateConstructorUsedError;
@@ -44,7 +44,7 @@ abstract class $NoteModelCopyWith<$Res> {
       {int? id,
       String title,
       String description,
-      DateTime createdTime,
+      DateTime timeEdited,
       bool isDoneTask,
       String label,
       BigInt color,
@@ -67,7 +67,7 @@ class _$NoteModelCopyWithImpl<$Res, $Val extends NoteModel>
     Object? id = freezed,
     Object? title = null,
     Object? description = null,
-    Object? createdTime = null,
+    Object? timeEdited = null,
     Object? isDoneTask = null,
     Object? label = null,
     Object? color = null,
@@ -86,9 +86,9 @@ class _$NoteModelCopyWithImpl<$Res, $Val extends NoteModel>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
-      createdTime: null == createdTime
-          ? _value.createdTime
-          : createdTime // ignore: cast_nullable_to_non_nullable
+      timeEdited: null == timeEdited
+          ? _value.timeEdited
+          : timeEdited // ignore: cast_nullable_to_non_nullable
               as DateTime,
       isDoneTask: null == isDoneTask
           ? _value.isDoneTask
@@ -121,7 +121,7 @@ abstract class _$$_NoteModelCopyWith<$Res> implements $NoteModelCopyWith<$Res> {
       {int? id,
       String title,
       String description,
-      DateTime createdTime,
+      DateTime timeEdited,
       bool isDoneTask,
       String label,
       BigInt color,
@@ -142,7 +142,7 @@ class __$$_NoteModelCopyWithImpl<$Res>
     Object? id = freezed,
     Object? title = null,
     Object? description = null,
-    Object? createdTime = null,
+    Object? timeEdited = null,
     Object? isDoneTask = null,
     Object? label = null,
     Object? color = null,
@@ -161,9 +161,9 @@ class __$$_NoteModelCopyWithImpl<$Res>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
-      createdTime: null == createdTime
-          ? _value.createdTime
-          : createdTime // ignore: cast_nullable_to_non_nullable
+      timeEdited: null == timeEdited
+          ? _value.timeEdited
+          : timeEdited // ignore: cast_nullable_to_non_nullable
               as DateTime,
       isDoneTask: null == isDoneTask
           ? _value.isDoneTask
@@ -192,7 +192,7 @@ class _$_NoteModel implements _NoteModel {
       {required this.id,
       required this.title,
       required this.description,
-      required this.createdTime,
+      required this.timeEdited,
       required this.isDoneTask,
       required this.label,
       required this.color,
@@ -208,7 +208,7 @@ class _$_NoteModel implements _NoteModel {
   @override
   final String description;
   @override
-  final DateTime createdTime;
+  final DateTime timeEdited;
   @override
   final bool isDoneTask;
   @override
@@ -220,7 +220,7 @@ class _$_NoteModel implements _NoteModel {
 
   @override
   String toString() {
-    return 'NoteModel(id: $id, title: $title, description: $description, createdTime: $createdTime, isDoneTask: $isDoneTask, label: $label, color: $color, isPinned: $isPinned)';
+    return 'NoteModel(id: $id, title: $title, description: $description, timeEdited: $timeEdited, isDoneTask: $isDoneTask, label: $label, color: $color, isPinned: $isPinned)';
   }
 
   @override
@@ -232,8 +232,8 @@ class _$_NoteModel implements _NoteModel {
             (identical(other.title, title) || other.title == title) &&
             (identical(other.description, description) ||
                 other.description == description) &&
-            (identical(other.createdTime, createdTime) ||
-                other.createdTime == createdTime) &&
+            (identical(other.timeEdited, timeEdited) ||
+                other.timeEdited == timeEdited) &&
             (identical(other.isDoneTask, isDoneTask) ||
                 other.isDoneTask == isDoneTask) &&
             (identical(other.label, label) || other.label == label) &&
@@ -245,7 +245,7 @@ class _$_NoteModel implements _NoteModel {
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, id, title, description,
-      createdTime, isDoneTask, label, color, isPinned);
+      timeEdited, isDoneTask, label, color, isPinned);
 
   @JsonKey(ignore: true)
   @override
@@ -266,7 +266,7 @@ abstract class _NoteModel implements NoteModel {
       {required final int? id,
       required final String title,
       required final String description,
-      required final DateTime createdTime,
+      required final DateTime timeEdited,
       required final bool isDoneTask,
       required final String label,
       required final BigInt color,
@@ -282,7 +282,7 @@ abstract class _NoteModel implements NoteModel {
   @override
   String get description;
   @override
-  DateTime get createdTime;
+  DateTime get timeEdited;
   @override
   bool get isDoneTask;
   @override

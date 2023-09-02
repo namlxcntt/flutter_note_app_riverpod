@@ -8,7 +8,9 @@ import 'package:flutter_note_app/utils/extensions.dart';
 import 'package:flutter_note_app/utils/logger.dart';
 import 'package:flutter_note_app/widget/text_under_light_w.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
+import '../../routes/router.dart';
 import 'home_page_state_provider.dart';
 
 class HomePage extends ConsumerStatefulWidget {
@@ -36,10 +38,9 @@ class _HomePageState extends ConsumerState<HomePage>
           ),
           child: listNotes.when(
               data: (data) {
-                if (data.$2.isEmpty) {
-                  return const EmptyNotesHome();
-                } else {
-                  return SingleChildScrollView(
+            return data.$2.isEmpty
+                ? const EmptyNotesHome()
+                : SingleChildScrollView(
                     child: Column(
                       children: [
                         Row(
@@ -55,7 +56,14 @@ class _HomePageState extends ConsumerState<HomePage>
                             margin: const EdgeInsets.only(
                                 top: AppConstant.sizePrimary),
                             height: Utils.getHeightNoteHome(context),
-                            child: ListNotesHomeWidget(data.$1)),
+                            child: ListNotesHomeWidget(
+                              data.$1,
+                              titleEmpty: context.getString().note_found_pinned,
+                              callBack: (note) {
+                                context.push(RouteDefine.detail.getPath,
+                                    extra: note);
+                              },
+                            )),
                         const SizedBox(height: AppConstant.size32),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -73,17 +81,24 @@ class _HomePageState extends ConsumerState<HomePage>
                           margin: const EdgeInsets.only(
                               top: AppConstant.sizePrimary),
                           height: Utils.getHeightNoteHome(context),
-                          child: ListNotesHomeWidget(data.$2),
+                          child: ListNotesHomeWidget(
+                            data.$2,
+                            titleEmpty:
+                                context.getString().note_found_interesting,
+                            callBack: (note) {
+                              context.push(RouteDefine.detail.getPath,
+                                  extra: note);
+                            },
+                          ),
                         ),
                       ],
                     ),
                   );
-                }
-              },
-              error: (error, stackTrace) {
-                LogUtils.instance.i("Error -> $stackTrace");
-              },
-              loading: () {}),
+          }, error: (error, stackTrace) {
+            LogUtils.instance.i("Error -> $stackTrace");
+          }, loading: () {
+            LogUtils.instance.i("Loading State");
+          }),
         ),
       ),
     );

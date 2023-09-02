@@ -11,5 +11,8 @@
   "starting_text" : "Every big step start with small step.\nNotes your first idea and start\nyour journey!",
   "start_journey": "Start Your Journey",
   "ops_problem": "Ops Sorry the problem",
-  "close" : "Close"
+  "close" : "Close",
+  "note_found_pinned": "Note found pinned notes",
+  "note_found_interesting" : "No interesting ideal notes",
+  "last_edited": "Last edited on"
 }

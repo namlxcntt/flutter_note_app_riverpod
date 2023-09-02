@@ -9,7 +9,7 @@ class NoteEntity extends Table{
 
   TextColumn get label => text().named('label')();
 
-  DateTimeColumn get timeCreated => dateTime().named('createdTime')();
+  DateTimeColumn get timeEdited => dateTime().named('timeEdited')();
 
   BoolColumn get isDoneTask => boolean().named("isDoneTask")();
 
