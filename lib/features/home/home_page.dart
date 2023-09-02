@@ -36,6 +36,7 @@ class _HomePageState extends ConsumerState<HomePage>
           ),
           child: listNotes.when(
               data: (data) {
+                LogUtils.instance.e(data.toString());
                 if (data.$2.isEmpty) {
                   return const EmptyNotesHome();
                 } else {
@@ -55,7 +56,10 @@ class _HomePageState extends ConsumerState<HomePage>
                             margin: const EdgeInsets.only(
                                 top: AppConstant.sizePrimary),
                             height: Utils.getHeightNoteHome(context),
-                            child: ListNotesHomeWidget(data.$1)),
+                            child: ListNotesHomeWidget(
+                              data.$1,
+                              titleEmpty: context.getString().note_found_pinned,
+                            )),
                         const SizedBox(height: AppConstant.size32),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -73,7 +77,10 @@ class _HomePageState extends ConsumerState<HomePage>
                           margin: const EdgeInsets.only(
                               top: AppConstant.sizePrimary),
                           height: Utils.getHeightNoteHome(context),
-                          child: ListNotesHomeWidget(data.$2),
+                          child: ListNotesHomeWidget(
+                            data.$2,
+                            titleEmpty: context.getString().note_found_interesting,
+                          ),
                         ),
                       ],
                     ),

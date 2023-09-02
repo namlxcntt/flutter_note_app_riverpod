@@ -11,6 +11,7 @@ import 'package:flutter_note_app/widget/bottom_sheet_error.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../data/model/app_bar/type_app_bar.dart';
 import 'child/bottom_sheet_select_color_w.dart';
 
 final selectColorState = StateProvider.autoDispose((ref) {
@@ -18,26 +19,29 @@ final selectColorState = StateProvider.autoDispose((ref) {
   return listData.first;
 });
 
+typedef DoubleError = ({String? titleError, String? contentError});
+
+final _validateProvider = StateProvider.autoDispose<DoubleError>((ref) {
+  return (titleError: null, contentError: null);
+});
+
+final _provideTextTitleController =
+    Provider.autoDispose((ref) => TextEditingController(text: ""));
+final _provideTextContentController =
+    Provider.autoDispose((ref) => TextEditingController(text: ""));
+
 final isPinnedState = StateProvider.autoDispose((ref) => false);
 
-class CreateNotePage extends ConsumerStatefulWidget {
+class CreateNotePage extends ConsumerWidget {
   const CreateNotePage({super.key});
 
   @override
-  ConsumerState createState() => _CreateNotePageState();
-}
-
-class _CreateNotePageState extends ConsumerState<CreateNotePage> {
-  final TextEditingController _textTitleController = TextEditingController();
-  final TextEditingController _textContentController = TextEditingController();
-
-  @override
-  void dispose() {
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    var colorState = ref.watch(selectColorState);
+    var statePinned = ref.watch(isPinnedState);
+    var titleController = ref.watch(_provideTextTitleController);
+    var contentController = ref.watch(_provideTextContentController);
+    var errorString = ref.watch(_validateProvider);
     ref.listen(createNoteStateProvider, (previous, next) {
       if (next is CreateSuccess) {
         context.pop();
@@ -57,9 +61,6 @@ class _CreateNotePageState extends ConsumerState<CreateNotePage> {
         );
       }
     });
-    var colorState = ref.watch(selectColorState);
-    var statePinned = ref.watch(isPinnedState);
-
     return Scaffold(
       backgroundColor: colorState.bgColor,
       resizeToAvoidBottomInset: false,
@@ -83,15 +84,26 @@ class _CreateNotePageState extends ConsumerState<CreateNotePage> {
         },
       ),
       appBar: AppBarWithActionText(
-        actionText: context.getString().save,
-        onClickActionText: () {
-          ref.read(createNoteStateProvider.notifier).createNote(
-                _textTitleController.text,
-                _textContentController.text,
-                colorState.bgColor,
-                statePinned,
-              );
-        },
+        typeAppBar: ActionText(
+          actionText: context.getString().save,
+          actionClick: () {
+            if (titleController.text.isNotEmpty && contentController.text.isNotEmpty) {
+              ref.read(createNoteStateProvider.notifier).createNote(
+                    titleController.text,
+                    contentController.text,
+                    colorState.bgColor,
+                    statePinned,
+                  );
+            } else {
+              ref.read(_validateProvider.notifier).update((state) {
+                return (
+                titleError: 'Title is not empty' ,
+                contentError: 'Content is not empty'
+                );
+              });
+            }
+          },
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(
@@ -104,8 +116,17 @@ class _CreateNotePageState extends ConsumerState<CreateNotePage> {
                     fontSize: AppConstant.size36,
                     color: AppColors.colorPrimaryBase,
                   ),
-              controller: _textTitleController,
+              onChanged: (value) {
+                ref.read(_validateProvider.notifier).update((state) {
+                  return (
+                    titleError: value.isEmpty ? 'Title is not empty' : null,
+                    contentError: state.contentError
+                  );
+                });
+              },
+              controller: titleController,
               decoration: InputDecoration(
+                errorText: errorString.titleError,
                 border: InputBorder.none,
                 focusedBorder: InputBorder.none,
                 enabledBorder: InputBorder.none,
@@ -129,8 +150,18 @@ class _CreateNotePageState extends ConsumerState<CreateNotePage> {
                       fontSize: AppConstant.size20,
                       color: AppColors.colorPrimaryBase,
                     ),
-                controller: _textContentController,
+                onChanged: (value) {
+                  ref.read(_validateProvider.notifier).update((state) {
+                    return (
+                      titleError: state.titleError,
+                      contentError:
+                          value.isEmpty ? 'Content is not empty' : null
+                    );
+                  });
+                },
+                controller: contentController,
                 decoration: InputDecoration(
+                  errorText: errorString.contentError,
                   border: InputBorder.none,
                   focusedBorder: InputBorder.none,
                   enabledBorder: InputBorder.none,

@@ -33,6 +33,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "extras": MessageLookupByLibrary.simpleMessage("extras"),
         "interesting_ideal":
             MessageLookupByLibrary.simpleMessage("Interesting Idea"),
+        "note_found_interesting":
+            MessageLookupByLibrary.simpleMessage("No interesting ideal notes"),
+        "note_found_pinned":
+            MessageLookupByLibrary.simpleMessage("Note found pinned notes"),
         "ops_problem":
             MessageLookupByLibrary.simpleMessage("Ops Sorry the problem"),
         "pinned_notes": MessageLookupByLibrary.simpleMessage("Pinned Notes"),

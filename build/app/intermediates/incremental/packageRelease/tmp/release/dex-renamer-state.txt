@@ -1,4 +1,0 @@
-#Mon Aug 28 21:48:11 ICT 2023
-base.0=/Users/namlx/flutter_note_app/build/app/intermediates/dex/release/minifyReleaseWithR8/classes.dex
-path.0=classes.dex
-renamed.0=classes.dex
