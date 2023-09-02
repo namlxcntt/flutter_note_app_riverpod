@@ -5,25 +5,24 @@ import 'package:flutter_note_app/utils/extensions.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 
+import '../data/model/app_bar/type_app_bar.dart';
 import '../generated/assets.dart';
 import '../theme/colors.dart';
 
 class AppBarWithActionText extends StatelessWidget implements PreferredSizeWidget {
   const AppBarWithActionText({
     super.key,
-    this.actionText = AppConstant.emptyString,
-    required this.onClickActionText,
+    required this.typeAppBar,
   });
 
-  final String actionText;
-  final VoidCallback onClickActionText;
+  final TypeAppBar typeAppBar;
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
       backgroundColor: AppColors.colorPrimaryBackground,
       leadingWidth: AppConstant.widthActionText,
-      elevation: 1,
+      elevation: 0.3,
       leading: GestureDetector(
         onTap: () {
           context.pop();
@@ -48,27 +47,33 @@ class AppBarWithActionText extends StatelessWidget implements PreferredSizeWidge
         ),
       ),
       actions: [
-        Container(
-          width: AppConstant.widthActionText,
-          margin: const EdgeInsets.symmetric(
-            vertical: AppConstant.size8,
-            horizontal: AppConstant.size8,
-          ),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(AppConstant.size28),
-            color: AppColors.colorPrimaryBase,
-          ),
-          child: Center(
-            child: GestureDetector(
-              onTap: onClickActionText,
-              child: Text(
-                actionText,
-                style: context.textBaseMedium()?.copyWith(
-                    color: Colors.white, fontSize: AppConstant.sizePrimary),
+        if (typeAppBar is ActionText)
+          Container(
+            width: AppConstant.widthActionText,
+            margin: const EdgeInsets.symmetric(
+              vertical: AppConstant.size8,
+              horizontal: AppConstant.size8,
+            ),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(AppConstant.size28),
+              color: AppColors.colorPrimaryBase,
+            ),
+            child: Center(
+              child: GestureDetector(
+                onTap: (typeAppBar as ActionText).actionClick,
+                child: Text(
+                  (typeAppBar as ActionText).actionText ?? '',
+                  style: context.textBaseMedium()?.copyWith(
+                      color: Colors.white, fontSize: AppConstant.sizePrimary),
+                ),
               ),
             ),
           ),
-        )
+        if (typeAppBar is ActionIcons)
+          Container(
+            margin: const EdgeInsets.only(right: 16),
+            child: SvgPicture.asset((typeAppBar as ActionIcons).iconSource),
+          )
       ],
     );
   }

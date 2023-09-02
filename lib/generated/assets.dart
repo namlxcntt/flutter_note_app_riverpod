@@ -10,6 +10,8 @@ class Assets {
   static const String iconsIcCreateThreeDot = 'assets/icons/ic_create_three_dot.svg';
   static const String iconsIcErrorIl = 'assets/icons/ic_error_il.svg';
   static const String iconsIcLabael = 'assets/icons/ic_labael.svg';
+  static const String iconsIcSettings = 'assets/icons/ic_settings.svg';
+  static const String iconsIlEmptyListPinned = 'assets/icons/il_empty_list_pinned.svg';
   static const String iconsIlStarting = 'assets/icons/il_starting.svg';
   static const String imagesImgPinned = 'assets/images/img_pinned.png';
   static const String imagesImgPinnedSolid = 'assets/images/img_pinned_solid.png';

@@ -4,21 +4,22 @@ import 'package:flutter_note_app/data/model/note/note_model.dart';
 import 'package:flutter_note_app/domain/create/create_note_usecase.dart';
 import 'package:flutter_note_app/domain/di/use_case_provider.dart';
 import 'package:flutter_note_app/utils/const.dart';
+import 'package:flutter_note_app/utils/logger.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final createNoteStateProvider =
     StateNotifierProvider<CreateNoteStateNotifier, CreateNoteState>((ref) {
   var useCase = ref.read(createNoteUseCaseProvider);
-  return CreateNoteStateNotifier(useCase);
+  return CreateNoteStateNotifier(useCase,ref);
 });
 
 class CreateNoteStateNotifier extends StateNotifier<CreateNoteState> {
-  CreateNoteStateNotifier(this.createNoteUseCase) : super(CreateNoteDefault());
+  CreateNoteStateNotifier(this.createNoteUseCase, this.ref) : super(CreateNoteDefault());
 
   final CreateNoteUseCase createNoteUseCase;
+  final StateNotifierProviderRef ref;
 
-  void createNote(String title, String content, Color colorBackground,
-      bool isPinned) async {
+  void createNote(String title, String content, Color colorBackground, bool isPinned) async {
     var noteModel = NoteModel(
       id: null,
       title: title,

@@ -41,10 +41,10 @@ class ItemNoteHomeWidget extends StatelessWidget {
                   Expanded(
                     child: Text(
                       noteModel.description,
-                      maxLines: 12,
+                      maxLines: 15,
                       textDirection: TextDirection.rtl,
                       textAlign: TextAlign.end,
-                      overflow: TextOverflow.ellipsis,
+                      overflow: TextOverflow.fade,
                       style: context.textXSRegular()?.copyWith(
                             color: AppColors.colorNeutralDarkGrey,
                             letterSpacing: 1.4,

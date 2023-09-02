@@ -1,4 +1,0 @@
-#Tue Aug 29 16:31:26 ICT 2023
-base.0=/Users/namlx/flutter_note_app/build/app/intermediates/dex/debug/mergeDexDebug/classes.dex
-path.0=classes.dex
-renamed.0=classes.dex
