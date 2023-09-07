@@ -61,7 +61,7 @@ class _HomePageState extends ConsumerState<HomePage>
                               titleEmpty: context.getString().note_found_pinned,
                               callBack: (note) {
                                 context.push(RouteDefine.detail.getPath,
-                                    extra: note);
+                                    extra: note.id);
                               },
                             )),
                         const SizedBox(height: AppConstant.size32),
@@ -87,7 +87,7 @@ class _HomePageState extends ConsumerState<HomePage>
                                 context.getString().note_found_interesting,
                             callBack: (note) {
                               context.push(RouteDefine.detail.getPath,
-                                  extra: note);
+                                  extra: note.id);
                             },
                           ),
                         ),

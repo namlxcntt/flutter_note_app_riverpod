@@ -5,8 +5,14 @@ import 'package:flutter_note_app/data/model/note/note_model.dart';
 class NoteMapper extends Mapper<NoteEntityData, NoteModel> {
   @override
   NoteEntityData mapFromDomain(NoteModel domain) {
-    // TODO: implement mapFromDomain
-    throw UnimplementedError();
+    return NoteEntityData(id: domain.id ?? -1,
+        title: domain.title,
+        description: domain.description,
+        label: domain.label,
+        timeEdited: domain.timeEdited,
+        isDoneTask: domain.isDoneTask,
+        isPinned: domain.isPinned,
+        color: domain.color);
   }
 
   @override

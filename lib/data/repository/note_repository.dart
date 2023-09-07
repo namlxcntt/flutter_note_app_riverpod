@@ -7,6 +7,8 @@ abstract class NoteRepository {
   Future<int> createNote(NoteModel noteModel);
 
   Stream<List<NoteModel>> getListNoteModel();
+
+  Stream<NoteModel> getDetailNote(int id);
 }
 
 class NoteRepositoryImpl extends NoteRepository {
@@ -37,5 +39,13 @@ class NoteRepositoryImpl extends NoteRepository {
     return appDatabase.notesDao.noteInCategory().map((event) {
       return event.map((e) => noteMapper.mapFromEntity(e)).toList();
     });
+  }
+
+  @override
+  Stream<NoteModel> getDetailNote(int id) {
+    var select = appDatabase.select(appDatabase.noteEntity);
+    return (select..where((noteEntity) => noteEntity.id.equals(id)))
+        .map((noteEntity) => noteMapper.mapFromEntity(noteEntity))
+        .watchSingle();
   }
 }

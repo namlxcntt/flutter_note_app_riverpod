@@ -41,10 +41,10 @@ class NyAppRouter {
               name: RouteDefine.detail.name,
               path: RouteDefine.detail.getSubPath,
               pageBuilder: (context, state) {
-                var data = state.extra as NoteModel;
+                var data = state.extra as int;
                 return MaterialPage(
                     child: DetailNotePage(
-                  noteModel: data,
+                  idNotes: data,
                 ));
               },
             ),

@@ -114,6 +114,9 @@ class CreateNotePage extends ConsumerWidget {
         ),
         child: Column(
           children: [
+            const SizedBox(
+              height: AppConstant.size20,
+            ),
             TextFormField(
               style: context.textTitle()?.copyWith(
                     fontSize: AppConstant.size36,
