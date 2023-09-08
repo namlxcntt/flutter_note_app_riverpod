@@ -28,6 +28,9 @@ mixin _$NoteModel {
   String get label => throw _privateConstructorUsedError;
   BigInt get color => throw _privateConstructorUsedError;
   bool get isPinned => throw _privateConstructorUsedError;
+  DateTime? get reminder => throw _privateConstructorUsedError;
+  int? get noteTypeId => throw _privateConstructorUsedError;
+  int? get labelId => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -48,7 +51,10 @@ abstract class $NoteModelCopyWith<$Res> {
       bool isDoneTask,
       String label,
       BigInt color,
-      bool isPinned});
+      bool isPinned,
+      DateTime? reminder,
+      int? noteTypeId,
+      int? labelId});
 }
 
 /// @nodoc
@@ -72,6 +78,9 @@ class _$NoteModelCopyWithImpl<$Res, $Val extends NoteModel>
     Object? label = null,
     Object? color = null,
     Object? isPinned = null,
+    Object? reminder = freezed,
+    Object? noteTypeId = freezed,
+    Object? labelId = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -106,6 +115,18 @@ class _$NoteModelCopyWithImpl<$Res, $Val extends NoteModel>
           ? _value.isPinned
           : isPinned // ignore: cast_nullable_to_non_nullable
               as bool,
+      reminder: freezed == reminder
+          ? _value.reminder
+          : reminder // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      noteTypeId: freezed == noteTypeId
+          ? _value.noteTypeId
+          : noteTypeId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      labelId: freezed == labelId
+          ? _value.labelId
+          : labelId // ignore: cast_nullable_to_non_nullable
+              as int?,
     ) as $Val);
   }
 }
@@ -125,7 +146,10 @@ abstract class _$$_NoteModelCopyWith<$Res> implements $NoteModelCopyWith<$Res> {
       bool isDoneTask,
       String label,
       BigInt color,
-      bool isPinned});
+      bool isPinned,
+      DateTime? reminder,
+      int? noteTypeId,
+      int? labelId});
 }
 
 /// @nodoc
@@ -147,6 +171,9 @@ class __$$_NoteModelCopyWithImpl<$Res>
     Object? label = null,
     Object? color = null,
     Object? isPinned = null,
+    Object? reminder = freezed,
+    Object? noteTypeId = freezed,
+    Object? labelId = freezed,
   }) {
     return _then(_$_NoteModel(
       id: freezed == id
@@ -181,6 +208,18 @@ class __$$_NoteModelCopyWithImpl<$Res>
           ? _value.isPinned
           : isPinned // ignore: cast_nullable_to_non_nullable
               as bool,
+      reminder: freezed == reminder
+          ? _value.reminder
+          : reminder // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      noteTypeId: freezed == noteTypeId
+          ? _value.noteTypeId
+          : noteTypeId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      labelId: freezed == labelId
+          ? _value.labelId
+          : labelId // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 }
@@ -196,7 +235,10 @@ class _$_NoteModel implements _NoteModel {
       required this.isDoneTask,
       required this.label,
       required this.color,
-      required this.isPinned});
+      required this.isPinned,
+      required this.reminder,
+      required this.noteTypeId,
+      required this.labelId});
 
   factory _$_NoteModel.fromJson(Map<String, dynamic> json) =>
       _$$_NoteModelFromJson(json);
@@ -217,10 +259,16 @@ class _$_NoteModel implements _NoteModel {
   final BigInt color;
   @override
   final bool isPinned;
+  @override
+  final DateTime? reminder;
+  @override
+  final int? noteTypeId;
+  @override
+  final int? labelId;
 
   @override
   String toString() {
-    return 'NoteModel(id: $id, title: $title, description: $description, timeEdited: $timeEdited, isDoneTask: $isDoneTask, label: $label, color: $color, isPinned: $isPinned)';
+    return 'NoteModel(id: $id, title: $title, description: $description, timeEdited: $timeEdited, isDoneTask: $isDoneTask, label: $label, color: $color, isPinned: $isPinned, reminder: $reminder, noteTypeId: $noteTypeId, labelId: $labelId)';
   }
 
   @override
@@ -239,13 +287,29 @@ class _$_NoteModel implements _NoteModel {
             (identical(other.label, label) || other.label == label) &&
             (identical(other.color, color) || other.color == color) &&
             (identical(other.isPinned, isPinned) ||
-                other.isPinned == isPinned));
+                other.isPinned == isPinned) &&
+            (identical(other.reminder, reminder) ||
+                other.reminder == reminder) &&
+            (identical(other.noteTypeId, noteTypeId) ||
+                other.noteTypeId == noteTypeId) &&
+            (identical(other.labelId, labelId) || other.labelId == labelId));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, title, description,
-      timeEdited, isDoneTask, label, color, isPinned);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      title,
+      description,
+      timeEdited,
+      isDoneTask,
+      label,
+      color,
+      isPinned,
+      reminder,
+      noteTypeId,
+      labelId);
 
   @JsonKey(ignore: true)
   @override
@@ -270,7 +334,10 @@ abstract class _NoteModel implements NoteModel {
       required final bool isDoneTask,
       required final String label,
       required final BigInt color,
-      required final bool isPinned}) = _$_NoteModel;
+      required final bool isPinned,
+      required final DateTime? reminder,
+      required final int? noteTypeId,
+      required final int? labelId}) = _$_NoteModel;
 
   factory _NoteModel.fromJson(Map<String, dynamic> json) =
       _$_NoteModel.fromJson;
@@ -291,6 +358,12 @@ abstract class _NoteModel implements NoteModel {
   BigInt get color;
   @override
   bool get isPinned;
+  @override
+  DateTime? get reminder;
+  @override
+  int? get noteTypeId;
+  @override
+  int? get labelId;
   @override
   @JsonKey(ignore: true)
   _$$_NoteModelCopyWith<_$_NoteModel> get copyWith =>

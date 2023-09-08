@@ -25,15 +25,20 @@ class MessageLookup extends MessageLookupByLibrary {
         "back": MessageLookupByLibrary.simpleMessage("Back"),
         "change_background":
             MessageLookupByLibrary.simpleMessage("Change Background"),
+        "change_note_type":
+            MessageLookupByLibrary.simpleMessage("Change Note Type"),
         "close": MessageLookupByLibrary.simpleMessage("Close"),
         "create_note_description_here":
             MessageLookupByLibrary.simpleMessage("Write yours notes here"),
         "create_note_text_title_here":
             MessageLookupByLibrary.simpleMessage("Title here"),
-        "extras": MessageLookupByLibrary.simpleMessage("extras"),
+        "extras": MessageLookupByLibrary.simpleMessage("Extras"),
+        "give_label": MessageLookupByLibrary.simpleMessage("Give Label"),
         "interesting_ideal":
             MessageLookupByLibrary.simpleMessage("Interesting Idea"),
         "last_edited": MessageLookupByLibrary.simpleMessage("Last edited on"),
+        "mark_as_finished":
+            MessageLookupByLibrary.simpleMessage("Mark as Finished"),
         "note_found_interesting":
             MessageLookupByLibrary.simpleMessage("No interesting ideal notes"),
         "note_found_pinned":
@@ -42,6 +47,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Ops Sorry the problem"),
         "pinned_notes": MessageLookupByLibrary.simpleMessage("Pinned Notes"),
         "save": MessageLookupByLibrary.simpleMessage("Save"),
+        "set_reminder": MessageLookupByLibrary.simpleMessage("Set Reminder"),
         "start_journey":
             MessageLookupByLibrary.simpleMessage("Start Your Journey"),
         "starting_text": MessageLookupByLibrary.simpleMessage(

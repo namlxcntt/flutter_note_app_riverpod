@@ -15,5 +15,11 @@ class NoteEntity extends Table{
 
   BoolColumn get isPinned => boolean().named("isPinned")();
 
+  DateTimeColumn get reminder => dateTime().named('reminder').nullable()();
+
   Int64Column get color => int64().named('color')();
+
+  IntColumn get noteTypeId => integer().named('noteId').nullable()();
+
+  IntColumn get labelId => integer().named('labelId').nullable()();
 }

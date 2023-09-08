@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_note_app/data/model/app_bar/type_app_bar.dart';
+import 'package:flutter_note_app/data/model/background/background_model.dart';
 import 'package:flutter_note_app/data/model/bottom_bar_options/bottom_bar_option_model.dart';
 import 'package:flutter_note_app/data/model/note/note_model.dart';
+import 'package:flutter_note_app/features/create/child/bottom_sheet_select_color_w.dart';
 import 'package:flutter_note_app/theme/themes.dart';
 import 'package:flutter_note_app/utils/extensions.dart';
 import 'package:flutter_note_app/utils/logger.dart';
@@ -11,9 +13,16 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../theme/colors.dart';
 import '../../utils/const.dart';
+import 'child/bottom_sheet_more_detail_note_w.dart';
 import 'detail_page_state_provider.dart';
 
 final isPinnedState = StateProvider.autoDispose((ref) => false);
+
+final selectColorDetailState = StateProvider.autoDispose((ref) {
+  final listData = ref.read(backgroundDataProvider);
+  return listData.first;
+});
+
 
 class DetailNotePage extends ConsumerWidget {
   final int idNotes;
@@ -31,7 +40,12 @@ class DetailNotePage extends ConsumerWidget {
           bottomBarOptionModel: BottomBarOptionDetailNote(
               onTapIconMore: () {
                 showModalBottomSheet(
-                    context: context, builder: (context) => Container());
+                  isDismissible: true,
+                  isScrollControlled: false,
+                  backgroundColor: Colors.transparent,
+                  context: context,
+                  builder: (context) => const BottomSheetMoreDetailNote(),
+                );
               },
               onTapPinned: (value) {
                 ref.read(isPinnedState.notifier).state = value;
@@ -39,8 +53,7 @@ class DetailNotePage extends ConsumerWidget {
               onTapSearch: () {
 
               },
-              leftText:
-                  '${context.getString().last_edited} ${noteModel.timeEdited.hour}.${noteModel.timeEdited.minute}',
+              leftText: '${context.getString().last_edited} ${noteModel.timeEdited.hour}.${noteModel.timeEdited.minute}',
               statePinned: statePinned),
         );
       }, error: (error, stackTrace) {

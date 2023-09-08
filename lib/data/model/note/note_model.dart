@@ -14,7 +14,10 @@ class NoteModel with _$NoteModel {
     required bool isDoneTask,
     required String label,
     required BigInt color,
-    required bool isPinned
+    required bool isPinned,
+    required DateTime? reminder,
+    required int? noteTypeId,
+    required int? labelId,
   }) = _NoteModel;
 
   factory NoteModel.fromJson(Map<String,Object?> json)  => _$NoteModelFromJson(json);

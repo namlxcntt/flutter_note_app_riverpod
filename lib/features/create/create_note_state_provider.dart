@@ -1,10 +1,10 @@
 import 'dart:ui';
+
 import 'package:equatable/equatable.dart';
 import 'package:flutter_note_app/data/model/note/note_model.dart';
 import 'package:flutter_note_app/domain/create/create_note_usecase.dart';
 import 'package:flutter_note_app/domain/di/use_case_provider.dart';
 import 'package:flutter_note_app/utils/const.dart';
-import 'package:flutter_note_app/utils/logger.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final createNoteStateProvider =
@@ -29,6 +29,9 @@ class CreateNoteStateNotifier extends StateNotifier<CreateNoteState> {
       label: AppConstant.emptyString,
       color: BigInt.from(colorBackground.value),
       isPinned: isPinned,
+      reminder: null,
+      noteTypeId: null,
+      labelId: null,
     );
     final data = await createNoteUseCase.execute(noteModel);
     if (data != -1) {

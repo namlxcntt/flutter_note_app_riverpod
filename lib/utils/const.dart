@@ -11,6 +11,7 @@ class AppConstant {
   static const size4 = 4.0;
   static const size8 = 8.0;
   static const size12 = 12.0;
+  static const size14 = 14.0;
   static const sizePrimary = 16.0;
   static const size18 = 18.0;
   static const size20 = 20.0;

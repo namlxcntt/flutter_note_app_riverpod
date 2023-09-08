@@ -100,10 +100,10 @@ class S {
     );
   }
 
-  /// `extras`
+  /// `Extras`
   String get extras {
     return Intl.message(
-      'extras',
+      'Extras',
       name: 'extras',
       desc: '',
       args: [],
@@ -205,6 +205,46 @@ class S {
     return Intl.message(
       'Last edited on',
       name: 'last_edited',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Set Reminder`
+  String get set_reminder {
+    return Intl.message(
+      'Set Reminder',
+      name: 'set_reminder',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Change Note Type`
+  String get change_note_type {
+    return Intl.message(
+      'Change Note Type',
+      name: 'change_note_type',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Give Label`
+  String get give_label {
+    return Intl.message(
+      'Give Label',
+      name: 'give_label',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Mark as Finished`
+  String get mark_as_finished {
+    return Intl.message(
+      'Mark as Finished',
+      name: 'mark_as_finished',
       desc: '',
       args: [],
     );

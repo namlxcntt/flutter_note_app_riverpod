@@ -24,13 +24,14 @@ class NoteRepositoryImpl extends NoteRepository {
   Future<int> createNote(NoteModel noteModel) {
     return appDatabase.into(appDatabase.noteEntity).insert(
           NoteEntityCompanion.insert(
-              title: noteModel.title,
-              description: noteModel.description,
-              label: noteModel.label,
-              timeEdited: noteModel.timeEdited,
-              isDoneTask: noteModel.isDoneTask,
-              color: noteModel.color,
-              isPinned: noteModel.isPinned),
+            title: noteModel.title,
+            description: noteModel.description,
+            label: noteModel.label,
+            timeEdited: noteModel.timeEdited,
+            isDoneTask: noteModel.isDoneTask,
+            color: noteModel.color,
+            isPinned: noteModel.isPinned,
+          ),
         );
   }
 

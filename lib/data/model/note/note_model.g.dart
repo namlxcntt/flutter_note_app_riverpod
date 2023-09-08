@@ -15,6 +15,11 @@ _$_NoteModel _$$_NoteModelFromJson(Map<String, dynamic> json) => _$_NoteModel(
       label: json['label'] as String,
       color: BigInt.parse(json['color'] as String),
       isPinned: json['isPinned'] as bool,
+      reminder: json['reminder'] == null
+          ? null
+          : DateTime.parse(json['reminder'] as String),
+      noteTypeId: json['noteTypeId'] as int?,
+      labelId: json['labelId'] as int?,
     );
 
 Map<String, dynamic> _$$_NoteModelToJson(_$_NoteModel instance) =>
@@ -27,4 +32,7 @@ Map<String, dynamic> _$$_NoteModelToJson(_$_NoteModel instance) =>
       'label': instance.label,
       'color': instance.color.toString(),
       'isPinned': instance.isPinned,
+      'reminder': instance.reminder?.toIso8601String(),
+      'noteTypeId': instance.noteTypeId,
+      'labelId': instance.labelId,
     };

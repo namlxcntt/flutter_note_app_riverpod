@@ -2,8 +2,13 @@
 class Assets {
   Assets._();
 
+  static const String extrasIcChangeNoteType = 'assets/icons/extras/ic_change_note_type.svg';
+  static const String extrasIcGiveLabel = 'assets/icons/extras/ic_give_label.svg';
+  static const String extrasIcMarkAsFinished = 'assets/icons/extras/ic_mark_as_finished.svg';
+  static const String extrasIcReminder = 'assets/icons/extras/ic_reminder.svg';
   static const String iconsIcArowStartedAdd = 'assets/icons/ic_arow_started_add.svg';
   static const String iconsIcArrowBack = 'assets/icons/ic_arrow_back.svg';
+  static const String iconsIcArrowRight = 'assets/icons/ic_arrow_right.svg';
   static const String iconsIcCloseButton = 'assets/icons/ic_close_button.svg';
   static const String iconsIcCreatePin = 'assets/icons/ic_create_pin.svg';
   static const String iconsIcCreateSearch = 'assets/icons/ic_create_search.svg';
