@@ -4,7 +4,7 @@
   "create_note_text_title_here" : "Title here",
   "create_note_description_here" : "Write yours notes here",
   "change_background" : "Change Background",
-  "extras" : "extras",
+  "extras" : "Extras",
   "pinned_notes": "Pinned Notes",
   "view_all" : "View all",
   "interesting_ideal": "Interesting Idea",
@@ -13,5 +13,12 @@
   "ops_problem": "Ops Sorry the problem",
   "close" : "Close",
   "note_found_pinned": "Note found pinned notes",
-  "note_found_interesting" : "No interesting ideal notes"
+  "note_found_interesting" : "No interesting ideal notes",
+  "last_edited": "Last edited on",
+  "set_reminder": "Set Reminder",
+  "change_note_type" : "Change Note Type",
+  "give_label": "Give Label",
+  "mark_as_finished" : "Mark as Finished",
+  "note_pinned_success_title": "Notes Pinned Successfully",
+  "note_pinned_success_desc" : "This note already displayed on\npinned section"
 }

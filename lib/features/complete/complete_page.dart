@@ -15,11 +15,6 @@ class _CompleteTaskPageState extends ConsumerState<CompleteTaskPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBarWithActionText(
-          typeAppBar: TypeAppBar.actionIcon(
-
-              actionClick: () {},
-              iconSource: Assets.iconsIcSettings)),
       body: Center(
         child: Text('Complete Task Screen'),
       ),

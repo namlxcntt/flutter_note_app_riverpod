@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_note_app/data/model/background/background_model.dart';
+import 'package:flutter_note_app/data/model/bottom_bar_options/bottom_bar_option_model.dart';
+import 'package:flutter_note_app/features/create/child/bottom_sheet_select_color_w.dart';
 import 'package:flutter_note_app/features/create/create_note_state_provider.dart';
 import 'package:flutter_note_app/theme/colors.dart';
 import 'package:flutter_note_app/theme/themes.dart';
@@ -12,7 +14,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../data/model/app_bar/type_app_bar.dart';
-import 'child/bottom_sheet_select_color_w.dart';
 
 final selectColorState = StateProvider.autoDispose((ref) {
   final listData = ref.read(backgroundDataProvider);
@@ -65,29 +66,31 @@ class CreateNotePage extends ConsumerWidget {
       backgroundColor: colorState.bgColor,
       resizeToAvoidBottomInset: false,
       bottomNavigationBar: BottomBarOptions(
-        onTapIconMore: () {
-          showModalBottomSheet(
-            constraints: const BoxConstraints(
-              minHeight: AppConstant.minHeightBottomSheet,
-              maxHeight: AppConstant.maxHeightBottomSheet,
-            ),
-            isDismissible: true,
-            isScrollControlled: false,
-            backgroundColor: Colors.transparent,
-            context: context,
-            builder: (context) => const BottomSheetSelectColor(),
-          );
-        },
-        statePinned: statePinned,
-        onTapPinned: (value) {
-          ref.read(isPinnedState.notifier).state = value;
-        },
+        bottomBarOptionModel: BottomBarOptionCreateNote(
+            statePinned: statePinned,
+            onTapIconMore: () {
+              showModalBottomSheet(
+                constraints: const BoxConstraints(
+                  minHeight: AppConstant.minHeightBottomSheet,
+                  maxHeight: AppConstant.maxHeightBottomSheet,
+                ),
+                isDismissible: true,
+                isScrollControlled: false,
+                backgroundColor: Colors.transparent,
+                context: context,
+                builder: (context) => const BottomSheetSelectColor(),
+              );
+            },
+            onTapPinned: (value) {
+              ref.read(isPinnedState.notifier).state = value;
+            }),
       ),
-      appBar: AppBarWithActionText(
+      appBar: AppBarApplication(
         typeAppBar: ActionText(
           actionText: context.getString().save,
           actionClick: () {
-            if (titleController.text.isNotEmpty && contentController.text.isNotEmpty) {
+            if (titleController.text.isNotEmpty &&
+                contentController.text.isNotEmpty) {
               ref.read(createNoteStateProvider.notifier).createNote(
                     titleController.text,
                     contentController.text,
@@ -97,8 +100,8 @@ class CreateNotePage extends ConsumerWidget {
             } else {
               ref.read(_validateProvider.notifier).update((state) {
                 return (
-                titleError: 'Title is not empty' ,
-                contentError: 'Content is not empty'
+                  titleError: 'Title is not empty',
+                  contentError: 'Content is not empty'
                 );
               });
             }
@@ -111,6 +114,9 @@ class CreateNotePage extends ConsumerWidget {
         ),
         child: Column(
           children: [
+            const SizedBox(
+              height: AppConstant.size20,
+            ),
             TextFormField(
               style: context.textTitle()?.copyWith(
                     fontSize: AppConstant.size36,

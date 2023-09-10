@@ -7,6 +7,8 @@ import 'package:flutter_note_app/data/database/entity/note_entity.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart' as path;
 
+import 'entity/label_entity.dart';
+
 part 'app_database.g.dart';
 
 LazyDatabase _openDbConnect() {
@@ -24,7 +26,7 @@ LazyDatabase _openDbConnect() {
 }
 
 
-@DriftDatabase(tables: [NoteEntity],daos: [NotesDao])
+@DriftDatabase(tables: [NoteEntity,LabelEntity],daos: [NotesDao])
 class AppDatabase extends _$AppDatabase {
 
   AppDatabase() : super(_openDbConnect());

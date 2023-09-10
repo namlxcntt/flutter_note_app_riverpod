@@ -10,11 +10,18 @@ import 'package:flutter_svg/flutter_svg.dart';
 import '../../../theme/colors.dart';
 
 class ListNotesHomeWidget extends ConsumerStatefulWidget {
-  const ListNotesHomeWidget(this._listModel, {super.key, this.titleEmpty = ''});
+  const ListNotesHomeWidget(
+    this._listModel, {
+    super.key,
+    this.titleEmpty = '',
+    required this.callBack,
+  });
 
   final List<NoteModel> _listModel;
 
   final String titleEmpty;
+
+  final Function(NoteModel) callBack;
 
   @override
   ConsumerState createState() => _ListNotesHomeWidgetState();
@@ -27,10 +34,15 @@ class _ListNotesHomeWidgetState extends ConsumerState<ListNotesHomeWidget> {
       alignment: Alignment.centerLeft,
       child: widget._listModel.isNotEmpty
           ? ListView.separated(
-              shrinkWrap: true,
+        shrinkWrap: true,
               scrollDirection: Axis.horizontal,
-              itemBuilder: (context, index) => ItemNoteHomeWidget(
-                noteModel: widget._listModel[index],
+              itemBuilder: (context, index) => InkWell(
+                onTap: () {
+                  widget.callBack(widget._listModel[index]);
+                },
+                child: ItemNoteHomeWidget(
+                  noteModel: widget._listModel[index],
+                ),
               ),
               separatorBuilder: (BuildContext context, int index) {
                 return const SizedBox(

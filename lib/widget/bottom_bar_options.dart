@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_note_app/data/model/bottom_bar_options/bottom_bar_option_model.dart';
 import 'package:flutter_note_app/theme/themes.dart';
 import 'package:flutter_note_app/utils/const.dart';
 import 'package:flutter_svg/svg.dart';
@@ -7,25 +8,44 @@ import '../generated/assets.dart';
 import '../theme/colors.dart';
 
 class BottomBarOptions extends StatelessWidget {
-  final String titleRight;
-  final VoidCallback? onTapIconMore;
-  final Function(bool) onTapPinned;
-  final bool statePinned;
 
+  final BottomBarOptionModel bottomBarOptionModel;
 
   const BottomBarOptions({
     super.key,
-    this.titleRight = AppConstant.emptyString,
-    this.onTapIconMore,
-    required this.statePinned,
-    required this.onTapPinned,
+    required this.bottomBarOptionModel,
   });
 
   @override
   Widget build(BuildContext context) {
+    String titleLeft = AppConstant.emptyString;
+    Function(bool)? actionTapPinned;
+    VoidCallback? actionTapSearch;
+    VoidCallback? actionTapMore;
+    bool statePinned = false;
+    bool isVisibleSearch = false;
+
+    if (bottomBarOptionModel is BottomBarOptionCreateNote) {
+      final createNoteModel = bottomBarOptionModel as BottomBarOptionCreateNote;
+      actionTapPinned = createNoteModel.onTapPinned;
+      statePinned = createNoteModel.statePinned;
+      actionTapMore = createNoteModel.onTapIconMore;
+    } else if (bottomBarOptionModel is BottomBarOptionDetailNote) {
+      final detailNoteModel = bottomBarOptionModel as BottomBarOptionDetailNote;
+      titleLeft = detailNoteModel.leftText;
+      actionTapPinned = detailNoteModel.onTapPinned;
+      statePinned = detailNoteModel.statePinned;
+      actionTapMore = detailNoteModel.onTapIconMore;
+      actionTapSearch = detailNoteModel.onTapSearch;
+      isVisibleSearch = true;
+    }
+
     return Container(
       height: kToolbarHeight,
-      color: AppColors.colorPrimaryBackground,
+      decoration: BoxDecoration(
+        color: AppColors.colorPrimaryBackground,
+        boxShadow: kElevationToShadow[1],
+      ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -35,22 +55,33 @@ class BottomBarOptions extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.only(left: AppConstant.sizePrimary),
               child: Text(
-                titleRight,
+                titleLeft,
                 style: context.text2XSMedium()?.copyWith(color: Colors.black),
               ),
             ),
           ),
           Flexible(
-            flex: 2,
+            flex: 4,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 const SizedBox(
                   width: AppConstant.size24,
                 ),
+                Visibility(
+                  visible: isVisibleSearch,
+                  child: GestureDetector(
+                    onTap: actionTapSearch,
+                    child: Padding(
+                      padding: const EdgeInsets.all(AppConstant.size8),
+                      child: SvgPicture.asset(Assets.iconsIcSearch,
+                          width: AppConstant.size24),
+                    ),
+                  ),
+                ),
                 GestureDetector(
                   onTap: () {
-                    onTapPinned(!statePinned);
+                    actionTapPinned?.call(!statePinned);
                   },
                   child: Padding(
                     padding: const EdgeInsets.all(AppConstant.size8),
@@ -63,7 +94,7 @@ class BottomBarOptions extends StatelessWidget {
                 ),
 
                 GestureDetector(
-                  onTap: onTapIconMore,
+                  onTap: actionTapMore,
                   child: Container(
                     height: kToolbarHeight,
                     width: kToolbarHeight,

@@ -7,6 +7,10 @@ abstract class NoteRepository {
   Future<int> createNote(NoteModel noteModel);
 
   Stream<List<NoteModel>> getListNoteModel();
+
+  Stream<NoteModel> getDetailNote(int id);
+
+  Future<bool> updateNoteModel(NoteModel noteModel);
 }
 
 class NoteRepositoryImpl extends NoteRepository {
@@ -22,13 +26,14 @@ class NoteRepositoryImpl extends NoteRepository {
   Future<int> createNote(NoteModel noteModel) {
     return appDatabase.into(appDatabase.noteEntity).insert(
           NoteEntityCompanion.insert(
-              title: noteModel.title,
-              description: noteModel.description,
-              label: noteModel.label,
-              timeCreated: noteModel.createdTime,
-              isDoneTask: noteModel.isDoneTask,
-              color: noteModel.color,
-              isPinned: noteModel.isPinned),
+            title: noteModel.title,
+            description: noteModel.description,
+            label: noteModel.label,
+            timeEdited: noteModel.timeEdited,
+            isDoneTask: noteModel.isDoneTask,
+            color: noteModel.color,
+            isPinned: noteModel.isPinned,
+          ),
         );
   }
 
@@ -38,4 +43,21 @@ class NoteRepositoryImpl extends NoteRepository {
       return event.map((e) => noteMapper.mapFromEntity(e)).toList();
     });
   }
+
+  @override
+  Stream<NoteModel> getDetailNote(int id) {
+    var select = appDatabase.select(appDatabase.noteEntity);
+    return (select..where((noteEntity) => noteEntity.id.equals(id)))
+        .map((noteEntity) => noteMapper.mapFromEntity(noteEntity))
+        .watchSingle();
+  }
+
+  @override
+  Future<bool> updateNoteModel(NoteModel noteModel) async {
+    return await appDatabase
+        .update(appDatabase.noteEntity)
+        .replace(noteMapper.mapFromDomain(noteModel));
+  }
+
+
 }

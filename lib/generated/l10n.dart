@@ -100,10 +100,10 @@ class S {
     );
   }
 
-  /// `extras`
+  /// `Extras`
   String get extras {
     return Intl.message(
-      'extras',
+      'Extras',
       name: 'extras',
       desc: '',
       args: [],
@@ -195,6 +195,76 @@ class S {
     return Intl.message(
       'No interesting ideal notes',
       name: 'note_found_interesting',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Last edited on`
+  String get last_edited {
+    return Intl.message(
+      'Last edited on',
+      name: 'last_edited',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Set Reminder`
+  String get set_reminder {
+    return Intl.message(
+      'Set Reminder',
+      name: 'set_reminder',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Change Note Type`
+  String get change_note_type {
+    return Intl.message(
+      'Change Note Type',
+      name: 'change_note_type',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Give Label`
+  String get give_label {
+    return Intl.message(
+      'Give Label',
+      name: 'give_label',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Mark as Finished`
+  String get mark_as_finished {
+    return Intl.message(
+      'Mark as Finished',
+      name: 'mark_as_finished',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Notes Pinned Successfully`
+  String get note_pinned_success_title {
+    return Intl.message(
+      'Notes Pinned Successfully',
+      name: 'note_pinned_success_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `This note already displayed on\npinned section`
+  String get note_pinned_success_desc {
+    return Intl.message(
+      'This note already displayed on\npinned section',
+      name: 'note_pinned_success_desc',
       desc: '',
       args: [],
     );

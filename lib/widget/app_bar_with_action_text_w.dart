@@ -9,8 +9,8 @@ import '../data/model/app_bar/type_app_bar.dart';
 import '../generated/assets.dart';
 import '../theme/colors.dart';
 
-class AppBarWithActionText extends StatelessWidget implements PreferredSizeWidget {
-  const AppBarWithActionText({
+class AppBarApplication extends StatelessWidget implements PreferredSizeWidget {
+  const AppBarApplication({
     super.key,
     required this.typeAppBar,
   });
@@ -23,6 +23,7 @@ class AppBarWithActionText extends StatelessWidget implements PreferredSizeWidge
       backgroundColor: AppColors.colorPrimaryBackground,
       leadingWidth: AppConstant.widthActionText,
       elevation: 0.3,
+      centerTitle: typeAppBar is TitleCenter,
       leading: GestureDetector(
         onTap: () {
           context.pop();

@@ -24,6 +24,7 @@ mixin _$TypeAppBar {
     required TResult Function(String iconSource, VoidCallback actionClick)
         actionIcon,
     required TResult Function(String title) titleCenter,
+    required TResult Function() defaultAppBar,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -32,6 +33,7 @@ mixin _$TypeAppBar {
     TResult? Function(String actionText, VoidCallback actionClick)? actionText,
     TResult? Function(String iconSource, VoidCallback actionClick)? actionIcon,
     TResult? Function(String title)? titleCenter,
+    TResult? Function()? defaultAppBar,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -40,6 +42,7 @@ mixin _$TypeAppBar {
     TResult Function(String actionText, VoidCallback actionClick)? actionText,
     TResult Function(String iconSource, VoidCallback actionClick)? actionIcon,
     TResult Function(String title)? titleCenter,
+    TResult Function()? defaultAppBar,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -49,6 +52,7 @@ mixin _$TypeAppBar {
     required TResult Function(ActionText value) actionText,
     required TResult Function(ActionIcons value) actionIcon,
     required TResult Function(TitleCenter value) titleCenter,
+    required TResult Function(DefaultAppBar value) defaultAppBar,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -57,6 +61,7 @@ mixin _$TypeAppBar {
     TResult? Function(ActionText value)? actionText,
     TResult? Function(ActionIcons value)? actionIcon,
     TResult? Function(TitleCenter value)? titleCenter,
+    TResult? Function(DefaultAppBar value)? defaultAppBar,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -65,6 +70,7 @@ mixin _$TypeAppBar {
     TResult Function(ActionText value)? actionText,
     TResult Function(ActionIcons value)? actionIcon,
     TResult Function(TitleCenter value)? titleCenter,
+    TResult Function(DefaultAppBar value)? defaultAppBar,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -159,6 +165,7 @@ class _$_TypeAppBar implements _TypeAppBar {
     required TResult Function(String iconSource, VoidCallback actionClick)
         actionIcon,
     required TResult Function(String title) titleCenter,
+    required TResult Function() defaultAppBar,
   }) {
     return $default(this.actionText);
   }
@@ -170,6 +177,7 @@ class _$_TypeAppBar implements _TypeAppBar {
     TResult? Function(String actionText, VoidCallback actionClick)? actionText,
     TResult? Function(String iconSource, VoidCallback actionClick)? actionIcon,
     TResult? Function(String title)? titleCenter,
+    TResult? Function()? defaultAppBar,
   }) {
     return $default?.call(this.actionText);
   }
@@ -181,6 +189,7 @@ class _$_TypeAppBar implements _TypeAppBar {
     TResult Function(String actionText, VoidCallback actionClick)? actionText,
     TResult Function(String iconSource, VoidCallback actionClick)? actionIcon,
     TResult Function(String title)? titleCenter,
+    TResult Function()? defaultAppBar,
     required TResult orElse(),
   }) {
     if ($default != null) {
@@ -196,6 +205,7 @@ class _$_TypeAppBar implements _TypeAppBar {
     required TResult Function(ActionText value) actionText,
     required TResult Function(ActionIcons value) actionIcon,
     required TResult Function(TitleCenter value) titleCenter,
+    required TResult Function(DefaultAppBar value) defaultAppBar,
   }) {
     return $default(this);
   }
@@ -207,6 +217,7 @@ class _$_TypeAppBar implements _TypeAppBar {
     TResult? Function(ActionText value)? actionText,
     TResult? Function(ActionIcons value)? actionIcon,
     TResult? Function(TitleCenter value)? titleCenter,
+    TResult? Function(DefaultAppBar value)? defaultAppBar,
   }) {
     return $default?.call(this);
   }
@@ -218,6 +229,7 @@ class _$_TypeAppBar implements _TypeAppBar {
     TResult Function(ActionText value)? actionText,
     TResult Function(ActionIcons value)? actionIcon,
     TResult Function(TitleCenter value)? titleCenter,
+    TResult Function(DefaultAppBar value)? defaultAppBar,
     required TResult orElse(),
   }) {
     if ($default != null) {
@@ -316,6 +328,7 @@ class _$ActionText implements ActionText {
     required TResult Function(String iconSource, VoidCallback actionClick)
         actionIcon,
     required TResult Function(String title) titleCenter,
+    required TResult Function() defaultAppBar,
   }) {
     return actionText(this.actionText, actionClick);
   }
@@ -327,6 +340,7 @@ class _$ActionText implements ActionText {
     TResult? Function(String actionText, VoidCallback actionClick)? actionText,
     TResult? Function(String iconSource, VoidCallback actionClick)? actionIcon,
     TResult? Function(String title)? titleCenter,
+    TResult? Function()? defaultAppBar,
   }) {
     return actionText?.call(this.actionText, actionClick);
   }
@@ -338,6 +352,7 @@ class _$ActionText implements ActionText {
     TResult Function(String actionText, VoidCallback actionClick)? actionText,
     TResult Function(String iconSource, VoidCallback actionClick)? actionIcon,
     TResult Function(String title)? titleCenter,
+    TResult Function()? defaultAppBar,
     required TResult orElse(),
   }) {
     if (actionText != null) {
@@ -353,6 +368,7 @@ class _$ActionText implements ActionText {
     required TResult Function(ActionText value) actionText,
     required TResult Function(ActionIcons value) actionIcon,
     required TResult Function(TitleCenter value) titleCenter,
+    required TResult Function(DefaultAppBar value) defaultAppBar,
   }) {
     return actionText(this);
   }
@@ -364,6 +380,7 @@ class _$ActionText implements ActionText {
     TResult? Function(ActionText value)? actionText,
     TResult? Function(ActionIcons value)? actionIcon,
     TResult? Function(TitleCenter value)? titleCenter,
+    TResult? Function(DefaultAppBar value)? defaultAppBar,
   }) {
     return actionText?.call(this);
   }
@@ -375,6 +392,7 @@ class _$ActionText implements ActionText {
     TResult Function(ActionText value)? actionText,
     TResult Function(ActionIcons value)? actionIcon,
     TResult Function(TitleCenter value)? titleCenter,
+    TResult Function(DefaultAppBar value)? defaultAppBar,
     required TResult orElse(),
   }) {
     if (actionText != null) {
@@ -476,6 +494,7 @@ class _$ActionIcons implements ActionIcons {
     required TResult Function(String iconSource, VoidCallback actionClick)
         actionIcon,
     required TResult Function(String title) titleCenter,
+    required TResult Function() defaultAppBar,
   }) {
     return actionIcon(iconSource, actionClick);
   }
@@ -487,6 +506,7 @@ class _$ActionIcons implements ActionIcons {
     TResult? Function(String actionText, VoidCallback actionClick)? actionText,
     TResult? Function(String iconSource, VoidCallback actionClick)? actionIcon,
     TResult? Function(String title)? titleCenter,
+    TResult? Function()? defaultAppBar,
   }) {
     return actionIcon?.call(iconSource, actionClick);
   }
@@ -498,6 +518,7 @@ class _$ActionIcons implements ActionIcons {
     TResult Function(String actionText, VoidCallback actionClick)? actionText,
     TResult Function(String iconSource, VoidCallback actionClick)? actionIcon,
     TResult Function(String title)? titleCenter,
+    TResult Function()? defaultAppBar,
     required TResult orElse(),
   }) {
     if (actionIcon != null) {
@@ -513,6 +534,7 @@ class _$ActionIcons implements ActionIcons {
     required TResult Function(ActionText value) actionText,
     required TResult Function(ActionIcons value) actionIcon,
     required TResult Function(TitleCenter value) titleCenter,
+    required TResult Function(DefaultAppBar value) defaultAppBar,
   }) {
     return actionIcon(this);
   }
@@ -524,6 +546,7 @@ class _$ActionIcons implements ActionIcons {
     TResult? Function(ActionText value)? actionText,
     TResult? Function(ActionIcons value)? actionIcon,
     TResult? Function(TitleCenter value)? titleCenter,
+    TResult? Function(DefaultAppBar value)? defaultAppBar,
   }) {
     return actionIcon?.call(this);
   }
@@ -535,6 +558,7 @@ class _$ActionIcons implements ActionIcons {
     TResult Function(ActionText value)? actionText,
     TResult Function(ActionIcons value)? actionIcon,
     TResult Function(TitleCenter value)? titleCenter,
+    TResult Function(DefaultAppBar value)? defaultAppBar,
     required TResult orElse(),
   }) {
     if (actionIcon != null) {
@@ -626,6 +650,7 @@ class _$TitleCenter implements TitleCenter {
     required TResult Function(String iconSource, VoidCallback actionClick)
         actionIcon,
     required TResult Function(String title) titleCenter,
+    required TResult Function() defaultAppBar,
   }) {
     return titleCenter(title);
   }
@@ -637,6 +662,7 @@ class _$TitleCenter implements TitleCenter {
     TResult? Function(String actionText, VoidCallback actionClick)? actionText,
     TResult? Function(String iconSource, VoidCallback actionClick)? actionIcon,
     TResult? Function(String title)? titleCenter,
+    TResult? Function()? defaultAppBar,
   }) {
     return titleCenter?.call(title);
   }
@@ -648,6 +674,7 @@ class _$TitleCenter implements TitleCenter {
     TResult Function(String actionText, VoidCallback actionClick)? actionText,
     TResult Function(String iconSource, VoidCallback actionClick)? actionIcon,
     TResult Function(String title)? titleCenter,
+    TResult Function()? defaultAppBar,
     required TResult orElse(),
   }) {
     if (titleCenter != null) {
@@ -663,6 +690,7 @@ class _$TitleCenter implements TitleCenter {
     required TResult Function(ActionText value) actionText,
     required TResult Function(ActionIcons value) actionIcon,
     required TResult Function(TitleCenter value) titleCenter,
+    required TResult Function(DefaultAppBar value) defaultAppBar,
   }) {
     return titleCenter(this);
   }
@@ -674,6 +702,7 @@ class _$TitleCenter implements TitleCenter {
     TResult? Function(ActionText value)? actionText,
     TResult? Function(ActionIcons value)? actionIcon,
     TResult? Function(TitleCenter value)? titleCenter,
+    TResult? Function(DefaultAppBar value)? defaultAppBar,
   }) {
     return titleCenter?.call(this);
   }
@@ -685,6 +714,7 @@ class _$TitleCenter implements TitleCenter {
     TResult Function(ActionText value)? actionText,
     TResult Function(ActionIcons value)? actionIcon,
     TResult Function(TitleCenter value)? titleCenter,
+    TResult Function(DefaultAppBar value)? defaultAppBar,
     required TResult orElse(),
   }) {
     if (titleCenter != null) {
@@ -701,4 +731,126 @@ abstract class TitleCenter implements TypeAppBar {
   @JsonKey(ignore: true)
   _$$TitleCenterCopyWith<_$TitleCenter> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$DefaultAppBarCopyWith<$Res> {
+  factory _$$DefaultAppBarCopyWith(
+          _$DefaultAppBar value, $Res Function(_$DefaultAppBar) then) =
+      __$$DefaultAppBarCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$DefaultAppBarCopyWithImpl<$Res>
+    extends _$TypeAppBarCopyWithImpl<$Res, _$DefaultAppBar>
+    implements _$$DefaultAppBarCopyWith<$Res> {
+  __$$DefaultAppBarCopyWithImpl(
+      _$DefaultAppBar _value, $Res Function(_$DefaultAppBar) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$DefaultAppBar implements DefaultAppBar {
+  _$DefaultAppBar();
+
+  @override
+  String toString() {
+    return 'TypeAppBar.defaultAppBar()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$DefaultAppBar);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(String actionText) $default, {
+    required TResult Function(String actionText, VoidCallback actionClick)
+        actionText,
+    required TResult Function(String iconSource, VoidCallback actionClick)
+        actionIcon,
+    required TResult Function(String title) titleCenter,
+    required TResult Function() defaultAppBar,
+  }) {
+    return defaultAppBar();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(String actionText)? $default, {
+    TResult? Function(String actionText, VoidCallback actionClick)? actionText,
+    TResult? Function(String iconSource, VoidCallback actionClick)? actionIcon,
+    TResult? Function(String title)? titleCenter,
+    TResult? Function()? defaultAppBar,
+  }) {
+    return defaultAppBar?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(String actionText)? $default, {
+    TResult Function(String actionText, VoidCallback actionClick)? actionText,
+    TResult Function(String iconSource, VoidCallback actionClick)? actionIcon,
+    TResult Function(String title)? titleCenter,
+    TResult Function()? defaultAppBar,
+    required TResult orElse(),
+  }) {
+    if (defaultAppBar != null) {
+      return defaultAppBar();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_TypeAppBar value) $default, {
+    required TResult Function(ActionText value) actionText,
+    required TResult Function(ActionIcons value) actionIcon,
+    required TResult Function(TitleCenter value) titleCenter,
+    required TResult Function(DefaultAppBar value) defaultAppBar,
+  }) {
+    return defaultAppBar(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_TypeAppBar value)? $default, {
+    TResult? Function(ActionText value)? actionText,
+    TResult? Function(ActionIcons value)? actionIcon,
+    TResult? Function(TitleCenter value)? titleCenter,
+    TResult? Function(DefaultAppBar value)? defaultAppBar,
+  }) {
+    return defaultAppBar?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_TypeAppBar value)? $default, {
+    TResult Function(ActionText value)? actionText,
+    TResult Function(ActionIcons value)? actionIcon,
+    TResult Function(TitleCenter value)? titleCenter,
+    TResult Function(DefaultAppBar value)? defaultAppBar,
+    required TResult orElse(),
+  }) {
+    if (defaultAppBar != null) {
+      return defaultAppBar(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class DefaultAppBar implements TypeAppBar {
+  factory DefaultAppBar() = _$DefaultAppBar;
 }

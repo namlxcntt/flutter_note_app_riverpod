@@ -10,11 +10,16 @@ _$_NoteModel _$$_NoteModelFromJson(Map<String, dynamic> json) => _$_NoteModel(
       id: json['id'] as int?,
       title: json['title'] as String,
       description: json['description'] as String,
-      createdTime: DateTime.parse(json['createdTime'] as String),
+      timeEdited: DateTime.parse(json['timeEdited'] as String),
       isDoneTask: json['isDoneTask'] as bool,
       label: json['label'] as String,
       color: BigInt.parse(json['color'] as String),
       isPinned: json['isPinned'] as bool,
+      reminder: json['reminder'] == null
+          ? null
+          : DateTime.parse(json['reminder'] as String),
+      noteTypeId: json['noteTypeId'] as int?,
+      labelId: json['labelId'] as int?,
     );
 
 Map<String, dynamic> _$$_NoteModelToJson(_$_NoteModel instance) =>
@@ -22,9 +27,12 @@ Map<String, dynamic> _$$_NoteModelToJson(_$_NoteModel instance) =>
       'id': instance.id,
       'title': instance.title,
       'description': instance.description,
-      'createdTime': instance.createdTime.toIso8601String(),
+      'timeEdited': instance.timeEdited.toIso8601String(),
       'isDoneTask': instance.isDoneTask,
       'label': instance.label,
       'color': instance.color.toString(),
       'isPinned': instance.isPinned,
+      'reminder': instance.reminder?.toIso8601String(),
+      'noteTypeId': instance.noteTypeId,
+      'labelId': instance.labelId,
     };

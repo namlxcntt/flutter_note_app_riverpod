@@ -19,4 +19,6 @@ abstract class TypeAppBar with _$TypeAppBar {
       required VoidCallback actionClick}) = ActionIcons;
 
   factory TypeAppBar.titleCenter({required String title}) = TitleCenter;
+  factory TypeAppBar.defaultAppBar() = DefaultAppBar;
+
 }

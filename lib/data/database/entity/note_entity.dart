@@ -9,11 +9,17 @@ class NoteEntity extends Table{
 
   TextColumn get label => text().named('label')();
 
-  DateTimeColumn get timeCreated => dateTime().named('createdTime')();
+  DateTimeColumn get timeEdited => dateTime().named('timeEdited')();
 
   BoolColumn get isDoneTask => boolean().named("isDoneTask")();
 
   BoolColumn get isPinned => boolean().named("isPinned")();
 
+  DateTimeColumn get reminder => dateTime().named('reminder').nullable()();
+
   Int64Column get color => int64().named('color')();
+
+  IntColumn get noteTypeId => integer().named('noteTypeId').nullable()();
+
+  IntColumn get labelId => integer().named('labelId').nullable()();
 }
