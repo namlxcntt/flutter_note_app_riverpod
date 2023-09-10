@@ -249,6 +249,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Notes Pinned Successfully`
+  String get note_pinned_success_title {
+    return Intl.message(
+      'Notes Pinned Successfully',
+      name: 'note_pinned_success_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `This note already displayed on\npinned section`
+  String get note_pinned_success_desc {
+    return Intl.message(
+      'This note already displayed on\npinned section',
+      name: 'note_pinned_success_desc',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

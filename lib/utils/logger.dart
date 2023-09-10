@@ -52,3 +52,25 @@ class LogUtils {
     }
   }
 }
+
+extension LogExtension on Object? {
+  void logError() {
+    LogUtils.instance.e(toString());
+  }
+
+  void logInfo() {
+    LogUtils.instance.i(toString());
+  }
+
+  void logDebug() {
+    LogUtils.instance.d(toString());
+  }
+
+  void logWarning() {
+    LogUtils.instance.w(toString());
+  }
+
+  void logWtf() {
+    LogUtils.instance.wtf(toString());
+  }
+}

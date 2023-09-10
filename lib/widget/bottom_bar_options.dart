@@ -36,6 +36,7 @@ class BottomBarOptions extends StatelessWidget {
       actionTapPinned = detailNoteModel.onTapPinned;
       statePinned = detailNoteModel.statePinned;
       actionTapMore = detailNoteModel.onTapIconMore;
+      actionTapSearch = detailNoteModel.onTapSearch;
       isVisibleSearch = true;
     }
 

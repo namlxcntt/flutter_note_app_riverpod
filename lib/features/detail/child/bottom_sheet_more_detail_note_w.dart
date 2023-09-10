@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_note_app/data/model/background/background_model.dart';
+import 'package:flutter_note_app/data/model/note/note_model.dart';
 import 'package:flutter_note_app/features/detail/child/item_extra_more_detail_note_w.dart';
-import 'package:flutter_note_app/features/detail/detail_page.dart';
 import 'package:flutter_note_app/generated/assets.dart';
 import 'package:flutter_note_app/theme/colors.dart';
 import 'package:flutter_note_app/theme/themes.dart';
@@ -11,15 +11,19 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 
+import '../state/detail_page_state_provider.dart';
 
 class BottomSheetMoreDetailNote extends ConsumerWidget {
-  const BottomSheetMoreDetailNote({super.key});
+  const BottomSheetMoreDetailNote(this.noteModel, this.onChangeColor,
+      {super.key});
+
+  final NoteModel noteModel;
+  final Function(Color) onChangeColor;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-
     var listBackGroundData = ref.watch(backgroundDataProvider);
-    var selectBackgroundData = ref.watch(selectColorDetailState);
+    var selectBackgroundData = ref.watch(selectColorDetailState(noteModel));
 
     return Container(
       decoration: const BoxDecoration(
@@ -64,7 +68,8 @@ class BottomSheetMoreDetailNote extends ConsumerWidget {
                   flex: 1,
                   child: GestureDetector(
                     onTap: () {
-                      ref.read(selectColorDetailState.notifier).state = element;
+                      ref.read(selectColorDetailState(noteModel).notifier).state = element;
+                      onChangeColor(ref.read(selectColorDetailState(noteModel).notifier).state.bgColor);
                     },
                     child: Container(
                       width: AppConstant.sizeCircleColor,

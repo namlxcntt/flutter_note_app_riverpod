@@ -43,6 +43,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("No interesting ideal notes"),
         "note_found_pinned":
             MessageLookupByLibrary.simpleMessage("Note found pinned notes"),
+        "note_pinned_success_desc": MessageLookupByLibrary.simpleMessage(
+            "This note already displayed on\npinned section"),
+        "note_pinned_success_title":
+            MessageLookupByLibrary.simpleMessage("Notes Pinned Successfully"),
         "ops_problem":
             MessageLookupByLibrary.simpleMessage("Ops Sorry the problem"),
         "pinned_notes": MessageLookupByLibrary.simpleMessage("Pinned Notes"),

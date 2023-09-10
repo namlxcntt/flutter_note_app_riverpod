@@ -9,6 +9,8 @@ abstract class NoteRepository {
   Stream<List<NoteModel>> getListNoteModel();
 
   Stream<NoteModel> getDetailNote(int id);
+
+  Future<bool> updateNoteModel(NoteModel noteModel);
 }
 
 class NoteRepositoryImpl extends NoteRepository {
@@ -49,4 +51,13 @@ class NoteRepositoryImpl extends NoteRepository {
         .map((noteEntity) => noteMapper.mapFromEntity(noteEntity))
         .watchSingle();
   }
+
+  @override
+  Future<bool> updateNoteModel(NoteModel noteModel) async {
+    return await appDatabase
+        .update(appDatabase.noteEntity)
+        .replace(noteMapper.mapFromDomain(noteModel));
+  }
+
+
 }

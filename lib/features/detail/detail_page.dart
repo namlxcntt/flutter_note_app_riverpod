@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_note_app/data/model/app_bar/type_app_bar.dart';
-import 'package:flutter_note_app/data/model/background/background_model.dart';
 import 'package:flutter_note_app/data/model/bottom_bar_options/bottom_bar_option_model.dart';
 import 'package:flutter_note_app/data/model/note/note_model.dart';
-import 'package:flutter_note_app/features/create/child/bottom_sheet_select_color_w.dart';
+import 'package:flutter_note_app/features/detail/child/bts_pinned_success.dart';
 import 'package:flutter_note_app/theme/themes.dart';
 import 'package:flutter_note_app/utils/extensions.dart';
 import 'package:flutter_note_app/utils/logger.dart';
@@ -14,27 +13,24 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../theme/colors.dart';
 import '../../utils/const.dart';
 import 'child/bottom_sheet_more_detail_note_w.dart';
-import 'detail_page_state_provider.dart';
-
-final isPinnedState = StateProvider.autoDispose((ref) => false);
-
-final selectColorDetailState = StateProvider.autoDispose((ref) {
-  final listData = ref.read(backgroundDataProvider);
-  return listData.first;
-});
-
+import 'state/detail_page_state_provider.dart';
 
 class DetailNotePage extends ConsumerWidget {
   final int idNotes;
 
   const DetailNotePage({super.key, required this.idNotes});
 
+  Future<bool> updateNote(WidgetRef ref, NoteModel noteModel) async {
+    return ref.read(updateNoteProvider(noteModel).future);
+  }
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    var statePinned = ref.watch(isPinnedState);
     var streamData = ref.watch(detailPageStateProvider(idNotes));
-
     return Scaffold(
+      backgroundColor: streamData.value != null
+          ? Color(streamData.value!.color.toInt())
+          : Colors.white,
       bottomNavigationBar: streamData.when(data: (noteModel) {
         return BottomBarOptions(
           bottomBarOptionModel: BottomBarOptionDetailNote(
@@ -44,17 +40,36 @@ class DetailNotePage extends ConsumerWidget {
                   isScrollControlled: false,
                   backgroundColor: Colors.transparent,
                   context: context,
-                  builder: (context) => const BottomSheetMoreDetailNote(),
+                  builder: (context) =>
+                      BottomSheetMoreDetailNote(noteModel, (color) {
+                    var noteUpdate =
+                        noteModel.copyWith(color: BigInt.from(color.value));
+                    updateNote(ref, noteUpdate);
+                  }),
                 );
               },
               onTapPinned: (value) {
-                ref.read(isPinnedState.notifier).state = value;
+                var noteCopy = noteModel.copyWith(isPinned: value);
+                value.logInfo();
+                updateNote(ref, noteCopy).then((stateUpdate) {
+                  if (stateUpdate && value) {
+                    showModalBottomSheet(
+                      isDismissible: true,
+                      isScrollControlled: false,
+                      backgroundColor: Colors.transparent,
+                      context: context,
+                      builder: (context) => const BottomSheetPinnedSuccess(),
+                    );
+                  }
+                });
               },
               onTapSearch: () {
-
+                showModalBottomSheet(
+                    context: context, builder: (context) => Container());
               },
-              leftText: '${context.getString().last_edited} ${noteModel.timeEdited.hour}.${noteModel.timeEdited.minute}',
-              statePinned: statePinned),
+              leftText:
+                  '${context.getString().last_edited} ${noteModel.timeEdited.hour}.${noteModel.timeEdited.minute}',
+              statePinned: noteModel.isPinned),
         );
       }, error: (error, stackTrace) {
         return null;
@@ -69,7 +84,6 @@ class DetailNotePage extends ConsumerWidget {
               padding: const EdgeInsets.all(AppConstant.sizePrimary),
               child: streamData.when(
                 data: (NoteModel noteModel) {
-                  LogUtils.instance.i('Data -> $noteModel');
                   return Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,

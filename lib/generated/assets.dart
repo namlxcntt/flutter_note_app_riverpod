@@ -15,6 +15,7 @@ class Assets {
   static const String iconsIcCreateThreeDot = 'assets/icons/ic_create_three_dot.svg';
   static const String iconsIcErrorIl = 'assets/icons/ic_error_il.svg';
   static const String iconsIcLabael = 'assets/icons/ic_labael.svg';
+  static const String iconsIcPinnedSuccess = 'assets/icons/ic_pinned_success.svg';
   static const String iconsIcSearch = 'assets/icons/ic_search.svg';
   static const String iconsIcSettings = 'assets/icons/ic_settings.svg';
   static const String iconsIlEmptyListPinned = 'assets/icons/il_empty_list_pinned.svg';

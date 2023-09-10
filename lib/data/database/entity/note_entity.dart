@@ -19,7 +19,7 @@ class NoteEntity extends Table{
 
   Int64Column get color => int64().named('color')();
 
-  IntColumn get noteTypeId => integer().named('noteId').nullable()();
+  IntColumn get noteTypeId => integer().named('noteTypeId').nullable()();
 
   IntColumn get labelId => integer().named('labelId').nullable()();
 }

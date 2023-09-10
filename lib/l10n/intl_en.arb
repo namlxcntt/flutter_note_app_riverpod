@@ -18,5 +18,7 @@
   "set_reminder": "Set Reminder",
   "change_note_type" : "Change Note Type",
   "give_label": "Give Label",
-  "mark_as_finished" : "Mark as Finished"
+  "mark_as_finished" : "Mark as Finished",
+  "note_pinned_success_title": "Notes Pinned Successfully",
+  "note_pinned_success_desc" : "This note already displayed on\npinned section"
 }

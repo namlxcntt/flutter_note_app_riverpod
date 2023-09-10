@@ -73,7 +73,7 @@ class $NoteEntityTable extends NoteEntity
       const VerificationMeta('noteTypeId');
   @override
   late final GeneratedColumn<int> noteTypeId = GeneratedColumn<int>(
-      'noteId', aliasedName, true,
+      'noteTypeId', aliasedName, true,
       type: DriftSqlType.int, requiredDuringInsert: false);
   static const VerificationMeta _labelIdMeta =
       const VerificationMeta('labelId');
@@ -159,9 +159,11 @@ class $NoteEntityTable extends NoteEntity
     } else if (isInserting) {
       context.missing(_colorMeta);
     }
-    if (data.containsKey('noteId')) {
-      context.handle(_noteTypeIdMeta,
-          noteTypeId.isAcceptableOrUnknown(data['noteId']!, _noteTypeIdMeta));
+    if (data.containsKey('noteTypeId')) {
+      context.handle(
+          _noteTypeIdMeta,
+          noteTypeId.isAcceptableOrUnknown(
+              data['noteTypeId']!, _noteTypeIdMeta));
     }
     if (data.containsKey('labelId')) {
       context.handle(_labelIdMeta,
@@ -195,7 +197,7 @@ class $NoteEntityTable extends NoteEntity
       color: attachedDatabase.typeMapping
           .read(DriftSqlType.bigInt, data['${effectivePrefix}color'])!,
       noteTypeId: attachedDatabase.typeMapping
-          .read(DriftSqlType.int, data['${effectivePrefix}noteId']),
+          .read(DriftSqlType.int, data['${effectivePrefix}noteTypeId']),
       labelId: attachedDatabase.typeMapping
           .read(DriftSqlType.int, data['${effectivePrefix}labelId']),
     );
@@ -246,7 +248,7 @@ class NoteEntityData extends DataClass implements Insertable<NoteEntityData> {
     }
     map['color'] = Variable<BigInt>(color);
     if (!nullToAbsent || noteTypeId != null) {
-      map['noteId'] = Variable<int>(noteTypeId);
+      map['noteTypeId'] = Variable<int>(noteTypeId);
     }
     if (!nullToAbsent || labelId != null) {
       map['labelId'] = Variable<int>(labelId);
@@ -441,7 +443,7 @@ class NoteEntityCompanion extends UpdateCompanion<NoteEntityData> {
       if (isPinned != null) 'isPinned': isPinned,
       if (reminder != null) 'reminder': reminder,
       if (color != null) 'color': color,
-      if (noteTypeId != null) 'noteId': noteTypeId,
+      if (noteTypeId != null) 'noteTypeId': noteTypeId,
       if (labelId != null) 'labelId': labelId,
     });
   }
@@ -504,7 +506,7 @@ class NoteEntityCompanion extends UpdateCompanion<NoteEntityData> {
       map['color'] = Variable<BigInt>(color.value);
     }
     if (noteTypeId.present) {
-      map['noteId'] = Variable<int>(noteTypeId.value);
+      map['noteTypeId'] = Variable<int>(noteTypeId.value);
     }
     if (labelId.present) {
       map['labelId'] = Variable<int>(labelId.value);
@@ -531,13 +533,188 @@ class NoteEntityCompanion extends UpdateCompanion<NoteEntityData> {
   }
 }
 
+class $LabelEntityTable extends LabelEntity
+    with TableInfo<$LabelEntityTable, LabelEntityData> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $LabelEntityTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<int> id = GeneratedColumn<int>(
+      'id', aliasedName, false,
+      hasAutoIncrement: true,
+      type: DriftSqlType.int,
+      requiredDuringInsert: false,
+      defaultConstraints:
+          GeneratedColumn.constraintIsAlways('PRIMARY KEY AUTOINCREMENT'));
+  static const VerificationMeta _descriptionMeta =
+      const VerificationMeta('description');
+  @override
+  late final GeneratedColumn<String> description = GeneratedColumn<String>(
+      'description', aliasedName, false,
+      type: DriftSqlType.string, requiredDuringInsert: true);
+  @override
+  List<GeneratedColumn> get $columns => [id, description];
+  @override
+  String get aliasedName => _alias ?? 'label_entity';
+  @override
+  String get actualTableName => 'label_entity';
+  @override
+  VerificationContext validateIntegrity(Insertable<LabelEntityData> instance,
+      {bool isInserting = false}) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    }
+    if (data.containsKey('description')) {
+      context.handle(
+          _descriptionMeta,
+          description.isAcceptableOrUnknown(
+              data['description']!, _descriptionMeta));
+    } else if (isInserting) {
+      context.missing(_descriptionMeta);
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  LabelEntityData map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return LabelEntityData(
+      id: attachedDatabase.typeMapping
+          .read(DriftSqlType.int, data['${effectivePrefix}id'])!,
+      description: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}description'])!,
+    );
+  }
+
+  @override
+  $LabelEntityTable createAlias(String alias) {
+    return $LabelEntityTable(attachedDatabase, alias);
+  }
+}
+
+class LabelEntityData extends DataClass implements Insertable<LabelEntityData> {
+  final int id;
+  final String description;
+  const LabelEntityData({required this.id, required this.description});
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['id'] = Variable<int>(id);
+    map['description'] = Variable<String>(description);
+    return map;
+  }
+
+  LabelEntityCompanion toCompanion(bool nullToAbsent) {
+    return LabelEntityCompanion(
+      id: Value(id),
+      description: Value(description),
+    );
+  }
+
+  factory LabelEntityData.fromJson(Map<String, dynamic> json,
+      {ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return LabelEntityData(
+      id: serializer.fromJson<int>(json['id']),
+      description: serializer.fromJson<String>(json['description']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'id': serializer.toJson<int>(id),
+      'description': serializer.toJson<String>(description),
+    };
+  }
+
+  LabelEntityData copyWith({int? id, String? description}) => LabelEntityData(
+        id: id ?? this.id,
+        description: description ?? this.description,
+      );
+  @override
+  String toString() {
+    return (StringBuffer('LabelEntityData(')
+          ..write('id: $id, ')
+          ..write('description: $description')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(id, description);
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is LabelEntityData &&
+          other.id == this.id &&
+          other.description == this.description);
+}
+
+class LabelEntityCompanion extends UpdateCompanion<LabelEntityData> {
+  final Value<int> id;
+  final Value<String> description;
+  const LabelEntityCompanion({
+    this.id = const Value.absent(),
+    this.description = const Value.absent(),
+  });
+  LabelEntityCompanion.insert({
+    this.id = const Value.absent(),
+    required String description,
+  }) : description = Value(description);
+  static Insertable<LabelEntityData> custom({
+    Expression<int>? id,
+    Expression<String>? description,
+  }) {
+    return RawValuesInsertable({
+      if (id != null) 'id': id,
+      if (description != null) 'description': description,
+    });
+  }
+
+  LabelEntityCompanion copyWith({Value<int>? id, Value<String>? description}) {
+    return LabelEntityCompanion(
+      id: id ?? this.id,
+      description: description ?? this.description,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (id.present) {
+      map['id'] = Variable<int>(id.value);
+    }
+    if (description.present) {
+      map['description'] = Variable<String>(description.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('LabelEntityCompanion(')
+          ..write('id: $id, ')
+          ..write('description: $description')
+          ..write(')'))
+        .toString();
+  }
+}
+
 abstract class _$AppDatabase extends GeneratedDatabase {
   _$AppDatabase(QueryExecutor e) : super(e);
   late final $NoteEntityTable noteEntity = $NoteEntityTable(this);
+  late final $LabelEntityTable labelEntity = $LabelEntityTable(this);
   late final NotesDao notesDao = NotesDao(this as AppDatabase);
   @override
   Iterable<TableInfo<Table, Object?>> get allTables =>
       allSchemaEntities.whereType<TableInfo<Table, Object?>>();
   @override
-  List<DatabaseSchemaEntity> get allSchemaEntities => [noteEntity];
+  List<DatabaseSchemaEntity> get allSchemaEntities => [noteEntity, labelEntity];
 }
